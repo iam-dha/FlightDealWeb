@@ -1,0 +1,29 @@
+.admin-section {
+  margin: 2rem;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 12px;
+}
+
+.admin-section table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-section table,
+th,
+td {
+  border: 1px solid #ccc;
+}
+
+.admin-section th,
+td {
+  padding: 10px;
+  text-align: left;
+}
+
+.admin-section form input,
+button {
+  margin: 0.5rem;
+  padding: 8px;
+}
