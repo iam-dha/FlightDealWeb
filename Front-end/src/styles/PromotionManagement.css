@@ -1,0 +1,82 @@
+.container {
+  padding: 20px;
+}
+
+.add-btn {
+  background: green;
+  color: white;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  margin-bottom: 20px;
+  border-radius: 5px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 500px;
+  max-width: 95%;
+  position: relative;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+  position: absolute;
+  right: 15px;
+  top: 10px;
+  font-size: 20px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-content label {
+  margin-top: 10px;
+}
+
+.modal-content input {
+  padding: 8px;
+  margin-top: 4px;
+}
+
+.submit-btn {
+  margin-top: 20px;
+  background: green;
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}

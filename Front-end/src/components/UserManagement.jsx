@@ -1,34 +1,42 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import api from "../services/api.js";
+import "../styles/UserManagement.css";
 
-export default function UserManagement() {
+const UserManagement = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/users").then((res) => setUsers(res.data));
+    api.get("/users").then((res) => setUsers(res.data));
   }, []);
 
+  const handleDelete = async (id) => {
+    await api.delete(`/users/${id}`);
+    setUsers(users.filter((u) => u._id !== id));
+  };
+
   return (
-    <div className="admin-section">
-      <h2>Quản lý người dùng</h2>
+    <div className="container">
+      <h2>Quản lý Người dùng</h2>
       <table>
         <thead>
           <tr>
-            <th>Họ tên</th>
+            <th>Tên</th>
             <th>Email</th>
-            <th>Vai trò</th>
-            <th>Thao tác</th>
+            <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
           {users.map((user) => (
             <tr key={user._id}>
-              <td>{user.fullname}</td>
+              <td>{user.name}</td>
               <td>{user.email}</td>
-              <td>{user.role}</td>
               <td>
-                <button>Sửa</button>
-                <button>Xoá</button>
+                <button
+                  className="action-btn"
+                  onClick={() => handleDelete(user._id)}
+                >
+                  Xoá
+                </button>
               </td>
             </tr>
           ))}
@@ -36,4 +44,6 @@ export default function UserManagement() {
       </table>
     </div>
   );
-}
+};
+
+export default UserManagement;
