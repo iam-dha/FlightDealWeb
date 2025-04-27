@@ -7,7 +7,7 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleSignUp = () => {
-    alert("Đăng ký thành công!");
+    alert("Đăng ký thành công testtest!");
     navigate("/");
   };
 
