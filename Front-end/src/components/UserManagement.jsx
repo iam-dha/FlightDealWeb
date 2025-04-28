@@ -20,16 +20,32 @@ const UserManagement = () => {
       <table>
         <thead>
           <tr>
-            <th>Tên</th>
+            <th>ID</th>
+            <th>Tên đầy đủ</th>
             <th>Email</th>
+            <th>Số điện thoại</th>
+            <th>Mật khẩu (mã hóa)</th>
+            <th>Địa chỉ</th>
+            <th>Thông tin thanh toán</th>
             <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
           {users.map((user) => (
             <tr key={user._id}>
+              <td>{user._id}</td>
               <td>{user.name}</td>
               <td>{user.email}</td>
+              <td>{user.phone || "N/A"}</td>
+              <td>{user.password || "********"}</td>
+              <td>{user.address || "N/A"}</td>
+              <td>
+                {user.paymentInfo
+                  ? user.paymentInfo.map((payment, index) => (
+                      <div key={index}>{payment}</div>
+                    ))
+                  : "N/A"}
+              </td>
               <td>
                 <button
                   className="action-btn"

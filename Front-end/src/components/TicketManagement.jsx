@@ -6,11 +6,16 @@ const TicketManagement = () => {
   const [tickets, setTickets] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
+    flightId: "",
     code: "",
     airline: "",
-    departure: "",
-    destination: "",
+    departureAirport: "",
+    arrivalAirport: "",
+    departureTime: "",
+    arrivalTime: "",
+    ticketType: "",
     price: "",
+    availableSeats: "",
   });
 
   useEffect(() => {
@@ -36,11 +41,16 @@ const TicketManagement = () => {
     e.preventDefault();
     await api.post("/tickets", formData);
     setFormData({
+      flightId: "",
       code: "",
       airline: "",
-      departure: "",
-      destination: "",
+      departureAirport: "",
+      arrivalAirport: "",
+      departureTime: "",
+      arrivalTime: "",
+      ticketType: "",
       price: "",
+      availableSeats: "",
     });
     setIsModalOpen(false);
     fetchTickets();
@@ -56,22 +66,32 @@ const TicketManagement = () => {
       <table>
         <thead>
           <tr>
-            <th>Mã vé</th>
-            <th>Hãng</th>
-            <th>Khởi hành</th>
-            <th>Điểm đến</th>
-            <th>Giá</th>
+            <th>ID</th>
+            <th>Mã chuyến bay</th>
+            <th>Hãng hàng không</th>
+            <th>Sân bay đi</th>
+            <th>Sân bay đến</th>
+            <th>Thời gian khởi hành</th>
+            <th>Thời gian đến</th>
+            <th>Loại vé</th>
+            <th>Giá vé</th>
+            <th>Số ghế còn trống</th>
             <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
           {tickets.map((ticket) => (
             <tr key={ticket._id}>
+              <td>{ticket.flightId}</td>
               <td>{ticket.code}</td>
               <td>{ticket.airline}</td>
-              <td>{ticket.departure}</td>
-              <td>{ticket.destination}</td>
+              <td>{ticket.departureAirport}</td>
+              <td>{ticket.arrivalAirport}</td>
+              <td>{ticket.departureTime}</td>
+              <td>{ticket.arrivalTime}</td>
+              <td>{ticket.ticketType}</td>
               <td>{ticket.price} VND</td>
+              <td>{ticket.availableSeats}</td>
               <td>
                 <button
                   className="action-btn"
@@ -97,7 +117,16 @@ const TicketManagement = () => {
             </button>
             <h3>Thêm vé máy bay</h3>
             <form onSubmit={handleAddTicket}>
-              <label>Mã vé:</label>
+              <label>ID chuyến bay:</label>
+              <input
+                type="text"
+                name="flightId"
+                value={formData.flightId}
+                onChange={handleInputChange}
+                required
+              />
+
+              <label>Mã chuyến bay:</label>
               <input
                 type="text"
                 name="code"
@@ -115,29 +144,68 @@ const TicketManagement = () => {
                 required
               />
 
-              <label>Điểm khởi hành:</label>
+              <label>Sân bay đi:</label>
               <input
                 type="text"
-                name="departure"
-                value={formData.departure}
+                name="departureAirport"
+                value={formData.departureAirport}
                 onChange={handleInputChange}
                 required
               />
 
-              <label>Điểm đến:</label>
+              <label>Sân bay đến:</label>
               <input
                 type="text"
-                name="destination"
-                value={formData.destination}
+                name="arrivalAirport"
+                value={formData.arrivalAirport}
                 onChange={handleInputChange}
                 required
               />
+
+              <label>Thời gian khởi hành:</label>
+              <input
+                type="datetime-local"
+                name="departureTime"
+                value={formData.departureTime}
+                onChange={handleInputChange}
+                required
+              />
+
+              <label>Thời gian đến:</label>
+              <input
+                type="datetime-local"
+                name="arrivalTime"
+                value={formData.arrivalTime}
+                onChange={handleInputChange}
+                required
+              />
+
+              <label>Loại vé:</label>
+              <select
+                name="ticketType"
+                value={formData.ticketType}
+                onChange={handleInputChange}
+                required
+              >
+                <option value="">Chọn loại vé</option>
+                <option value="Phổ thông">Phổ thông</option>
+                <option value="Thương gia">Thương gia</option>
+              </select>
 
               <label>Giá vé:</label>
               <input
                 type="number"
                 name="price"
                 value={formData.price}
+                onChange={handleInputChange}
+                required
+              />
+
+              <label>Số ghế còn trống:</label>
+              <input
+                type="number"
+                name="availableSeats"
+                value={formData.availableSeats}
                 onChange={handleInputChange}
                 required
               />

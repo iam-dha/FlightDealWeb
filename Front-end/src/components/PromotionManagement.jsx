@@ -62,10 +62,12 @@ const PromotionManagement = () => {
   const [promotions, setPromotions] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [formData, setFormData] = useState({
-    name: "",
+    id: "",
     code: "",
+    description: "",
     discount: "",
-    expiry: "",
+    validity: "",
+    conditions: "",
   });
 
   useEffect(() => {
@@ -90,7 +92,14 @@ const PromotionManagement = () => {
   const handleAddPromotion = async (e) => {
     e.preventDefault();
     await api.post("/promotions", formData);
-    setFormData({ name: "", code: "", discount: "", expiry: "" });
+    setFormData({
+      id: "",
+      code: "",
+      description: "",
+      discount: "",
+      validity: "",
+      conditions: "",
+    });
     setIsModalOpen(false);
     fetchPromotions();
   };
@@ -105,20 +114,24 @@ const PromotionManagement = () => {
       <table>
         <thead>
           <tr>
-            <th>Tên khuyến mãi</th>
-            <th>Mã</th>
-            <th>Giảm (%)</th>
-            <th>Ngày hết hạn</th>
+            <th>ID</th>
+            <th>Mã code</th>
+            <th>Mô tả</th>
+            <th>Giảm giá</th>
+            <th>Thời gian hiệu lực</th>
+            <th>Điều kiện áp dụng</th>
             <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
           {promotions.map((promo) => (
             <tr key={promo._id}>
-              <td>{promo.name}</td>
+              <td>{promo.id}</td>
               <td>{promo.code}</td>
+              <td>{promo.description}</td>
               <td>{promo.discount}%</td>
-              <td>{new Date(promo.expiry).toLocaleDateString()}</td>
+              <td>{new Date(promo.validity).toLocaleDateString()}</td>
+              <td>{promo.conditions}</td>
               <td>
                 <button
                   className="action-btn"
@@ -144,16 +157,16 @@ const PromotionManagement = () => {
             </button>
             <h3>Thêm khuyến mãi</h3>
             <form onSubmit={handleAddPromotion}>
-              <label>Tên khuyến mãi:</label>
+              <label>ID mã khuyến mãi:</label>
               <input
                 type="text"
-                name="name"
-                value={formData.name}
+                name="id"
+                value={formData.id}
                 onChange={handleInputChange}
                 required
               />
 
-              <label>Mã khuyến mãi:</label>
+              <label>Mã code:</label>
               <input
                 type="text"
                 name="code"
@@ -162,7 +175,15 @@ const PromotionManagement = () => {
                 required
               />
 
-              <label>Giảm giá (%):</label>
+              <label>Mô tả:</label>
+              <textarea
+                name="description"
+                value={formData.description}
+                onChange={handleInputChange}
+                required
+              ></textarea>
+
+              <label>Phần trăm/giá trị giảm giá:</label>
               <input
                 type="number"
                 name="discount"
@@ -171,14 +192,22 @@ const PromotionManagement = () => {
                 required
               />
 
-              <label>Ngày hết hạn:</label>
+              <label>Thời gian hiệu lực:</label>
               <input
                 type="date"
-                name="expiry"
-                value={formData.expiry}
+                name="validity"
+                value={formData.validity}
                 onChange={handleInputChange}
                 required
               />
+
+              <label>Điều kiện áp dụng:</label>
+              <textarea
+                name="conditions"
+                value={formData.conditions}
+                onChange={handleInputChange}
+                required
+              ></textarea>
 
               <button type="submit" className="submit-btn">
                 Thêm

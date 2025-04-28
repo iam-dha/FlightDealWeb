@@ -6,8 +6,13 @@ const OrderManagement = () => {
   const [orders, setOrders] = useState([]);
 
   useEffect(() => {
-    api.get("/orders").then((res) => setOrders(res.data));
+    fetchOrders();
   }, []);
+
+  const fetchOrders = async () => {
+    const res = await api.get("/orders");
+    setOrders(res.data);
+  };
 
   const handleDelete = async (id) => {
     await api.delete(`/orders/${id}`);
@@ -20,20 +25,30 @@ const OrderManagement = () => {
       <table>
         <thead>
           <tr>
-            <th>Mã đơn</th>
-            <th>Khách hàng</th>
-            <th>Tổng tiền</th>
-            <th>Ngày đặt</th>
+            <th>ID Đơn hàng</th>
+            <th>ID Người dùng</th>
+            <th>Loại sản phẩm</th>
+            <th>Chi tiết sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá tổng cộng</th>
+            <th>Trạng thái</th>
+            <th>Thời gian đặt</th>
+            <th>Phương thức thanh toán</th>
             <th>Hành động</th>
           </tr>
         </thead>
         <tbody>
           {orders.map((order) => (
             <tr key={order._id}>
-              <td>{order.code}</td>
-              <td>{order.customerName}</td>
+              <td>{order._id}</td>
+              <td>{order.userId}</td>
+              <td>{order.productType}</td>
+              <td>{order.productDetails}</td>
+              <td>{order.quantity}</td>
               <td>{order.total} VND</td>
-              <td>{new Date(order.date).toLocaleDateString()}</td>
+              <td>{order.status}</td>
+              <td>{new Date(order.date).toLocaleString()}</td>
+              <td>{order.paymentMethod}</td>
               <td>
                 <button
                   className="action-btn"
