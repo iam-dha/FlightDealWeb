@@ -1,4 +1,4 @@
-/*import axios from "axios";
+import axios from "axios";
 
 // Cấu hình base URL cho toàn bộ request
 const api = axios.create({
@@ -9,8 +9,7 @@ const api = axios.create({
 });
 
 export default api;
-*/
-
+/*
 const mockUsers = [
   { _id: "1", name: "Nguyễn Văn A", email: "a@example.com" },
   { _id: "2", name: "Trần Thị B", email: "b@example.com" },
@@ -89,13 +88,18 @@ const mockPromotions = [
   },
 ];
 const mockStatistics = {
-  totalUsers: 100,
   totalOrders: 250,
   totalRevenue: 50000000,
-  topDestination: "TP.HCM",
+  totalTicketsSold: 200,
+  totalUsers: 100,
+  bestSellingFlight: "VN123",
 };
 const api = {
   get: async (url) => {
+    if (url === "/statistics") {
+      console.log("Trả về mockStatistics:", mockStatistics);
+      return { data: mockStatistics };
+    }
     if (url === "/users") {
       return { data: mockUsers };
     }
@@ -161,3 +165,4 @@ const api = {
 };
 
 export default api;
+*/

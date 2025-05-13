@@ -80,3 +80,12 @@ td {
   cursor: pointer;
   border-radius: 4px;
 }
+.notification {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 14px;
+}

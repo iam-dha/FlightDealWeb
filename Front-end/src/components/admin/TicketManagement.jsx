@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api.js";
-import "../../styles/PromotionManagement.css";
+import "../../styles/TicketManagement.css";
 
 const TicketManagement = () => {
   const [tickets, setTickets] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditMode, setIsEditMode] = useState(false); // Trạng thái sửa
   const [formData, setFormData] = useState({
     flightId: "",
     code: "",
@@ -17,6 +18,7 @@ const TicketManagement = () => {
     price: "",
     availableSeats: "",
   });
+  const [notification, setNotification] = useState(""); // Thông báo thành công
 
   useEffect(() => {
     fetchTickets();
@@ -28,8 +30,18 @@ const TicketManagement = () => {
   };
 
   const handleDelete = async (id) => {
-    await api.delete(`/tickets/${id}`);
-    setTickets(tickets.filter((t) => t._id !== id));
+    const confirmDelete = window.confirm("Bạn có chắc chắn muốn xoá vé này?");
+    if (confirmDelete) {
+      await api.delete(`/tickets/${id}`);
+      setTickets(tickets.filter((t) => t._id !== id));
+      showNotification("Xoá vé thành công!");
+    }
+  };
+
+  const handleEdit = (ticket) => {
+    setFormData(ticket); // Đổ dữ liệu vé cần sửa vào form
+    setIsEditMode(true); // Bật chế độ sửa
+    setIsModalOpen(true); // Mở modal
   };
 
   const handleInputChange = (e) => {
@@ -37,9 +49,19 @@ const TicketManagement = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleAddTicket = async (e) => {
+  const handleAddOrEditTicket = async (e) => {
     e.preventDefault();
-    await api.post("/tickets", formData);
+    if (isEditMode) {
+      // Chế độ sửa
+      await api.put(`/tickets/${formData._id}`, formData);
+      setTickets(tickets.map((t) => (t._id === formData._id ? formData : t)));
+      showNotification("Cập nhật vé thành công!");
+    } else {
+      // Chế độ thêm mới
+      await api.post("/tickets", formData);
+      setTickets([...tickets, formData]);
+      showNotification("Thêm vé thành công!");
+    }
     setFormData({
       flightId: "",
       code: "",
@@ -53,12 +75,19 @@ const TicketManagement = () => {
       availableSeats: "",
     });
     setIsModalOpen(false);
+    setIsEditMode(false); // Tắt chế độ sửa
     fetchTickets();
+  };
+
+  const showNotification = (message) => {
+    setNotification(message);
+    setTimeout(() => setNotification(""), 3000); // Ẩn thông báo sau 3 giây
   };
 
   return (
     <div className="container">
       <h2>Quản lý Vé máy bay</h2>
+      {notification && <div className="notification">{notification}</div>}
       <button className="add-btn" onClick={() => setIsModalOpen(true)}>
         Thêm vé máy bay
       </button>
@@ -99,24 +128,33 @@ const TicketManagement = () => {
                 >
                   Xoá
                 </button>
+                <button
+                  className="action-btn edit-btn"
+                  onClick={() => handleEdit(ticket)}
+                >
+                  Sửa
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
 
-      {/* Modal thêm vé máy bay */}
+      {/* Modal thêm/sửa vé máy bay */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
             <button
               className="modal-close"
-              onClick={() => setIsModalOpen(false)}
+              onClick={() => {
+                setIsModalOpen(false);
+                setIsEditMode(false); // Tắt chế độ sửa khi đóng modal
+              }}
             >
               ×
             </button>
-            <h3>Thêm vé máy bay</h3>
-            <form onSubmit={handleAddTicket}>
+            <h3>{isEditMode ? "Sửa vé máy bay" : "Thêm vé máy bay"}</h3>
+            <form onSubmit={handleAddOrEditTicket}>
               <label>ID chuyến bay:</label>
               <input
                 type="text"
@@ -124,6 +162,7 @@ const TicketManagement = () => {
                 value={formData.flightId}
                 onChange={handleInputChange}
                 required
+                disabled={isEditMode} // Không cho sửa ID khi ở chế độ sửa
               />
 
               <label>Mã chuyến bay:</label>
@@ -211,7 +250,7 @@ const TicketManagement = () => {
               />
 
               <button type="submit" className="submit-btn">
-                Thêm
+                {isEditMode ? "Cập nhật" : "Thêm"}
               </button>
             </form>
           </div>

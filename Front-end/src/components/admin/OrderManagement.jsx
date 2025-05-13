@@ -4,24 +4,45 @@ import "../../styles/UserManagement.css";
 
 const OrderManagement = () => {
   const [orders, setOrders] = useState([]);
+  const [notification, setNotification] = useState(""); // Thông báo thành công
 
   useEffect(() => {
     fetchOrders();
   }, []);
 
   const fetchOrders = async () => {
-    const res = await api.get("/orders");
-    setOrders(res.data);
+    try {
+      const res = await api.get("/orders");
+      setOrders(res.data);
+    } catch (error) {
+      console.error("Lỗi khi tải danh sách đơn hàng:", error);
+    }
   };
 
   const handleDelete = async (id) => {
-    await api.delete(`/orders/${id}`);
-    setOrders(orders.filter((o) => o._id !== id));
+    const confirmDelete = window.confirm(
+      "Bạn có chắc chắn muốn xoá đơn hàng này?"
+    );
+    if (confirmDelete) {
+      try {
+        await api.delete(`/orders/${id}`);
+        setOrders(orders.filter((o) => o._id !== id));
+        showNotification("Xoá đơn hàng thành công!");
+      } catch (error) {
+        console.error("Lỗi khi xoá đơn hàng:", error);
+      }
+    }
+  };
+
+  const showNotification = (message) => {
+    setNotification(message);
+    setTimeout(() => setNotification(""), 3000); // Ẩn thông báo sau 3 giây
   };
 
   return (
     <div className="container">
       <h2>Quản lý Đơn đặt hàng</h2>
+      {notification && <div className="notification">{notification}</div>}
       <table>
         <thead>
           <tr>
