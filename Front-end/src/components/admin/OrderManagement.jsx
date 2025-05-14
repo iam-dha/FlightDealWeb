@@ -5,6 +5,8 @@ import "../../styles/UserManagement.css";
 const OrderManagement = () => {
   const [orders, setOrders] = useState([]);
   const [notification, setNotification] = useState(""); // Thông báo thành công
+  const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
+  const itemsPerPage = 10; // Số hàng trên mỗi trang
 
   useEffect(() => {
     fetchOrders();
@@ -36,8 +38,16 @@ const OrderManagement = () => {
 
   const showNotification = (message) => {
     setNotification(message);
-    setTimeout(() => setNotification(""), 3000); // Ẩn thông báo sau 3 giây
+    setTimeout(() => setNotification(""), 2000); // Ẩn thông báo sau 3 giây
   };
+
+  // Tính toán dữ liệu hiển thị trên mỗi trang
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = orders.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Chuyển sang trang khác
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="container">
@@ -59,7 +69,7 @@ const OrderManagement = () => {
           </tr>
         </thead>
         <tbody>
-          {orders.map((order) => (
+          {currentItems.map((order) => (
             <tr key={order._id}>
               <td>{order._id}</td>
               <td>{order.userId}</td>
@@ -82,6 +92,22 @@ const OrderManagement = () => {
           ))}
         </tbody>
       </table>
+
+      {/* Phân trang */}
+      <div className="pagination">
+        {Array.from(
+          { length: Math.ceil(orders.length / itemsPerPage) },
+          (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => paginate(index + 1)}
+              className={currentPage === index + 1 ? "active" : ""}
+            >
+              {index + 1}
+            </button>
+          )
+        )}
+      </div>
     </div>
   );
 };

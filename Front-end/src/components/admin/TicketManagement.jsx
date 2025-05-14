@@ -4,8 +4,12 @@ import "../../styles/TicketManagement.css";
 
 const TicketManagement = () => {
   const [tickets, setTickets] = useState([]);
+  const [filteredTickets, setFilteredTickets] = useState([]); // Danh sách vé sau khi lọc
+  const [searchTerm, setSearchTerm] = useState(""); // Từ khóa tìm kiếm
+  const [currentPage, setCurrentPage] = useState(1); // Trang hiện tại
+  const itemsPerPage = 10; // Số hàng trên mỗi trang
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isEditMode, setIsEditMode] = useState(false); // Trạng thái sửa
+  const [isEditMode, setIsEditMode] = useState(false);
   const [formData, setFormData] = useState({
     flightId: "",
     code: "",
@@ -18,15 +22,33 @@ const TicketManagement = () => {
     price: "",
     availableSeats: "",
   });
-  const [notification, setNotification] = useState(""); // Thông báo thành công
+  const [notification, setNotification] = useState("");
 
   useEffect(() => {
     fetchTickets();
   }, []);
 
+  useEffect(() => {
+    // Lọc danh sách vé dựa trên từ khóa tìm kiếm
+    const filtered = tickets.filter((ticket) => {
+      const flightId = ticket.flightId || ""; // Xử lý undefined
+      const code = ticket.code || ""; // Xử lý undefined
+      const airline = ticket.airline || ""; // Xử lý undefined
+
+      return (
+        flightId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        code.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        airline.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    });
+    setFilteredTickets(filtered);
+    setCurrentPage(1); // Quay về trang đầu tiên khi tìm kiếm
+  }, [searchTerm, tickets]);
+
   const fetchTickets = async () => {
     const res = await api.get("/tickets");
     setTickets(res.data);
+    setFilteredTickets(res.data); // Hiển thị tất cả vé ban đầu
   };
 
   const handleDelete = async (id) => {
@@ -39,9 +61,9 @@ const TicketManagement = () => {
   };
 
   const handleEdit = (ticket) => {
-    setFormData(ticket); // Đổ dữ liệu vé cần sửa vào form
-    setIsEditMode(true); // Bật chế độ sửa
-    setIsModalOpen(true); // Mở modal
+    setFormData(ticket);
+    setIsEditMode(true);
+    setIsModalOpen(true);
   };
 
   const handleInputChange = (e) => {
@@ -52,12 +74,10 @@ const TicketManagement = () => {
   const handleAddOrEditTicket = async (e) => {
     e.preventDefault();
     if (isEditMode) {
-      // Chế độ sửa
       await api.put(`/tickets/${formData._id}`, formData);
       setTickets(tickets.map((t) => (t._id === formData._id ? formData : t)));
       showNotification("Cập nhật vé thành công!");
     } else {
-      // Chế độ thêm mới
       await api.post("/tickets", formData);
       setTickets([...tickets, formData]);
       showNotification("Thêm vé thành công!");
@@ -75,19 +95,37 @@ const TicketManagement = () => {
       availableSeats: "",
     });
     setIsModalOpen(false);
-    setIsEditMode(false); // Tắt chế độ sửa
+    setIsEditMode(false);
     fetchTickets();
   };
 
   const showNotification = (message) => {
     setNotification(message);
-    setTimeout(() => setNotification(""), 3000); // Ẩn thông báo sau 3 giây
+    setTimeout(() => setNotification(""), 2000);
   };
+
+  // Tính toán dữ liệu hiển thị trên mỗi trang
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems = filteredTickets.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Chuyển sang trang khác
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
     <div className="container">
       <h2>Quản lý Vé máy bay</h2>
       {notification && <div className="notification">{notification}</div>}
+
+      {/* Thanh tìm kiếm */}
+      <input
+        type="text"
+        placeholder="Tìm kiếm vé máy bay..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="search-bar"
+      />
+
       <button className="add-btn" onClick={() => setIsModalOpen(true)}>
         Thêm vé máy bay
       </button>
@@ -109,7 +147,7 @@ const TicketManagement = () => {
           </tr>
         </thead>
         <tbody>
-          {tickets.map((ticket) => (
+          {currentItems.map((ticket) => (
             <tr key={ticket._id}>
               <td>{ticket.flightId}</td>
               <td>{ticket.code}</td>
@@ -140,6 +178,22 @@ const TicketManagement = () => {
         </tbody>
       </table>
 
+      {/* Phân trang */}
+      <div className="pagination">
+        {Array.from(
+          { length: Math.ceil(filteredTickets.length / itemsPerPage) },
+          (_, index) => (
+            <button
+              key={index + 1}
+              onClick={() => paginate(index + 1)}
+              className={currentPage === index + 1 ? "active" : ""}
+            >
+              {index + 1}
+            </button>
+          )
+        )}
+      </div>
+
       {/* Modal thêm/sửa vé máy bay */}
       {isModalOpen && (
         <div className="modal-overlay">
@@ -148,7 +202,7 @@ const TicketManagement = () => {
               className="modal-close"
               onClick={() => {
                 setIsModalOpen(false);
-                setIsEditMode(false); // Tắt chế độ sửa khi đóng modal
+                setIsEditMode(false);
               }}
             >
               ×
@@ -162,7 +216,7 @@ const TicketManagement = () => {
                 value={formData.flightId}
                 onChange={handleInputChange}
                 required
-                disabled={isEditMode} // Không cho sửa ID khi ở chế độ sửa
+                disabled={isEditMode}
               />
 
               <label>Mã chuyến bay:</label>
