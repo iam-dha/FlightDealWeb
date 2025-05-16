@@ -1,0 +1,67 @@
+.hotel-search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  background: linear-gradient(90deg, #005bac, #0072ff);
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  align-items: center;
+  margin: 20px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border-radius: 12px;
+  padding: 10px 12px;
+  flex: 1;
+  min-width: 160px;
+  border: 1px solid #ddd;
+}
+
+.input-group .icon {
+  margin-right: 8px;
+  color: #005bac;
+}
+
+.input-group input,
+.input-group select {
+  border: none;
+  outline: none;
+  background: none;
+  width: 100%;
+  font-size: 14px;
+}
+
+.search-button {
+  background-color: #ff5a5f;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 12px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button .search-icon {
+  margin-right: 8px;
+}
+
+.search-button:hover {
+  background-color: #e0484d;
+}
+
+@media (max-width: 768px) {
+  .hotel-search-bar {
+    flex-direction: column;
+  }
+  .input-group,
+  .search-button {
+    width: calc(100% - 20px);
+  }
+}

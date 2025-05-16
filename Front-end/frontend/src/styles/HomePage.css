@@ -1,0 +1,466 @@
+.homepage-container {
+  font-family: Arial, sans-serif;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.homepage-header {
+  min-height: 300px;
+  position: relative;
+  background-image: url("../../public/images/vforum-hinh-nen-mua-thu-2016-by-telasm-7.jpg"); /* điều chỉnh lại đường dẫn nếu cần */
+  background-size: cover; /* Giúp ảnh phủ toàn bộ mà không bị méo */
+  background-position: center; /* Canh giữa ảnh */
+  background-repeat: no-repeat; /* Không lặp lại ảnh */
+  background-attachment: fixed; /* (tuỳ chọn) Giữ ảnh cố định khi cuộn */
+  color: white;
+  padding: 20px 96px;
+  text-align: center;
+}
+
+.homepage-header nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin-top: 10px;
+}
+.logo_home {
+  text-align: left;
+}
+.homepage-header nav a {
+  margin: 0 15px;
+  font-size: 14px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.homepage-hero {
+  position: relative;
+  top: -200px;
+  z-index: 10;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+}
+.text_title_home,
+.text_description_title_home {
+  color: white;
+}
+.search-bar {
+  width: 75%;
+  z-index: 10;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #fff;
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.container_search_value {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.search-bar input,
+.search-bar select {
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+.text_search_des {
+  font-weight: bold;
+  color: rgb(3, 18, 26);
+  font-size: 14px;
+}
+.container_ResponseSearch {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.containerTotalDeReday {
+  justify-content: space-between;
+}
+.containerSelectInputSearch {
+  width: 100%;
+}
+.inputLocation {
+  width: 100%;
+}
+.titleSelect {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+.textImageSearch {
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: Mulish;
+  line-height: 20px;
+}
+.quantitySelector {
+  height: 38px;
+  align-items: center;
+  position: relative;
+  border: none;
+  outline: none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+}
+.selected_user {
+  cursor: pointer;
+}
+.dropdown:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Bóng đậm hơn khi hover */
+}
+.dropdown {
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Tạo bóng cho nút */
+  transition: box-shadow 0.3s ease;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  border: 1px solid #ccc;
+  background-color: white;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+.containerplusadd {
+  display: flex; /* Sử dụng flexbox để căn chỉnh các phần tử */
+  align-items: center; /* Căn giữa theo chiều dọc */
+  gap: 20px;
+  width: fit-content;
+  flex-direction: row;
+}
+.buttonplusadd {
+  width: 40px !important;
+  padding: 5px 15px; /* Khoảng đệm cho nút */
+  border: none; /* Ẩn đường viền */
+  background-color: #ffffff;
+  color: #ccc;
+  border-radius: 5px; /* Bo góc cho nút */
+  cursor: pointer; /* Hiển thị con trỏ như nút bấm */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Bóng nhẹ cho nút */
+  transition: background-color 0.3s, box-shadow 0.3s; /* Hiệu ứng chuyển tiếp */
+}
+
+.buttonplusadd:hover {
+  background-color: #0056b3; /* Màu nền tối hơn khi hover */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Bóng đậm hơn khi hover */
+}
+.textRoom {
+  width: 20px;
+  text-align: center;
+}
+.containerSearchAll_copy {
+  display: none;
+  width: 50px !important;
+  height: 50px !important;
+  background-color: #0056b3;
+  border-radius: 16px;
+  margin-right: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.containerTotalDeReday {
+  justify-content: space-between;
+  flex-direction: row;
+  gap: 40px;
+}
+.containerAdvertise {
+  width: 40%;
+}
+
+/* Thẻ chuyến bay */
+/* Danh sách các chuyến bay */
+/* Danh sách các chuyến bay */
+.flights-list {
+  margin-top: -170px;
+}
+
+.flights-list h3 {
+  padding-left: 24px;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.flights {
+  display: flex;
+  width: calc(100% - 80px);
+  padding: 40px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.flight-card {
+  display: flex;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  align-items: center;
+}
+
+.flight-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.flight-logo img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-right: 20px;
+}
+
+.flight-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.flight-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flight-header h4 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #333;
+}
+
+.flight-discount {
+  background-color: #ff6347;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.flight-details {
+  font-size: 16px;
+}
+
+.flight-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #009688;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #009688;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #00796b;
+}
+.homepage-footer {
+  background-color: #333;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* avatar, hồ sơ người dùng */
+.user-avatar {
+  border: 1px solid white;
+  padding: 6px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  cursor: pointer;
+  align-items: center;
+}
+
+.avatar-image {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+.container_point_name {
+  display: flex;
+  flex-direction: row;
+  gap: 6px;
+}
+.text_name_ava,
+.text_point_ava {
+  display: flex;
+  padding: 0;
+  margin: 0;
+  text-align: start;
+  white-space: nowrap;
+  align-items: center;
+  font-size: 14px;
+}
+.user-menu {
+  z-index: 20;
+  position: absolute;
+  top: 100px;
+  right: 20px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  width: 200px;
+}
+.height_ava {
+  width: 1px;
+  background-color: white;
+}
+.user-menu ul {
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+}
+
+.user-menu li {
+  padding: 10px;
+}
+
+.user-menu a {
+  text-align: left;
+  text-decoration: none;
+  color: #333;
+  display: block;
+}
+
+.user-menu a:hover {
+  background-color: #f0f0f0;
+}
+.place_explore {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* padding: 40px; */
+  max-width: 1280px;
+  padding-bottom: 48px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  background-color: #fff;
+  margin: 40px auto;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  overflow: hidden;
+}
+.title_place_explore {
+  background-image: linear-gradient(
+    147.82deg,
+    #91d6fd -43.94%,
+    #d1f0ff 18.87%,
+    #f5fbff 97.06%,
+    #ffffff 97.06%
+  );
+  width: fit-content;
+  padding: 0px 40px 0px 140px;
+}
+.text_title {
+  color: rgba(3, 18, 26, 1);
+  text-align: start;
+  font-size: 24px;
+  line-height: 28px;
+  font-weight: 700;
+}
+.item_place {
+  padding: 32px 24px 0px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+.title_list_item_place {
+  display: flex;
+  flex-direction: column;
+}
+.text_title_list_item_place {
+  font-size: 20px;
+  font-weight: 600;
+  color: rgba(3, 18, 26, 1);
+}
+.text_des_list_item_place {
+  padding: 0;
+  margin: 0;
+}
+.hotel-list {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 0;
+}
+
+.hotel-card {
+  cursor: pointer;
+  min-width: 220px;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  flex-shrink: 0;
+  background: #000;
+}
+
+.hotel-image {
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  display: block;
+}
+
+.hotel-name {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 10px;
+  color: white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  font-size: 14px;
+  font-weight: bold;
+}

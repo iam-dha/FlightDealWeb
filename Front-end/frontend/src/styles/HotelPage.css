@@ -1,0 +1,76 @@
+.hotelpage-container {
+  font-family: Arial, sans-serif;
+}
+
+.hotelpage-header {
+  background-color: #005bac;
+  color: white;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.hotelpage-header nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+}
+
+.hotel-list {
+  padding: 20px;
+}
+
+.hotels {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hotel-card {
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 300px;
+  overflow: hidden;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.hotel-image {
+  width: 100%;
+  min-height: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+.hotel-info {
+  padding: 10px;
+}
+
+.hotel-price {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+button {
+  background-color: #005bac;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: calc(100% - 20px); /* trừ padding 10px mỗi bên */
+  cursor: pointer;
+  /* position: absolute; */
+  bottom: 5px;
+  left: 10px;
+  right: 10px;
+}
+
+button:hover {
+  background-color: #004080;
+}
+
+.hotelpage-footer {
+  text-align: center;
+  padding: 20px;
+  background-color: #f1f1f1;
+}
