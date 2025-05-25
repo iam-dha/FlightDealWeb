@@ -1,0 +1,134 @@
+.transaction-history-container {
+  margin: 30px auto;
+  padding: 0 20px;
+  font-family: "Segoe UI", sans-serif;
+  background-color: #f9fafb;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.header h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.back-button {
+  max-width: 180px;
+  background-color: #e2e8f0;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #1e293b;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.back-button:hover {
+  background-color: #cbd5e1;
+}
+
+.transaction-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s;
+}
+
+.transaction-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+}
+
+.transaction-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.icon {
+  font-size: 30px;
+  margin-right: 10px;
+  flex-shrink: 0;
+}
+
+.info {
+  flex-grow: 1;
+}
+
+.type {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1e293b;
+}
+
+.location {
+  font-size: 14px;
+  color: #475569;
+}
+
+.date {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+.amount {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.amount.positive {
+  color: #10b981;
+}
+
+.amount.negative {
+  color: #ef4444;
+}
+
+.transaction-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 12px;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.code,
+.method {
+  color: #64748b;
+}
+
+.status {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.status.success {
+  background-color: #dcfce7;
+  color: #16a34a;
+}
+
+.status.refund {
+  background-color: #fef9c3;
+  color: #ca8a04;
+}
+
+.status.pending {
+  background-color: #f0f9ff;
+  color: #0284c7;
+}

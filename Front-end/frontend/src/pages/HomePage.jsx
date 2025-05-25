@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalendarDays, faChair } from "@fortawesome/free-solid-svg-icons";
 import "../styles/HomePage.css";
+import FlightDetailBox from "../components/FlightDetailBox";
+import FlightCheckoutPage from "./FlightCheckoutPage";
 const HomePage = () => {
   const [destination, setDestination] = useState("");
   const [date, setDate] = useState("");
@@ -21,7 +27,27 @@ const HomePage = () => {
         arrival: "HAN",
         duration: "2h 30m",
         discount: "10% OFF",
-        logo: "https://www.vietjetair.com/Content/VietJetAir/images/logo-vj.svg",
+        logo: "/images/air1.jpg",
+        ticketOptions: [
+          {
+            name: "Nguyên bản",
+            price: "1.666.823 VND/khách",
+            details: [
+              "Hành lý xách tay 7kg",
+              "Không hành lý ký gửi",
+              "Không hoàn vé",
+            ],
+          },
+          {
+            name: "Hành lý+",
+            price: "1.881.223 VND/khách",
+            details: [
+              "Hành lý xách tay 7kg",
+              "Hành lý ký gửi 15kg",
+              "Không hoàn vé",
+            ],
+          },
+        ],
       },
       {
         airline: "Vietnam Airlines",
@@ -32,7 +58,27 @@ const HomePage = () => {
         arrival: "HAN",
         duration: "2h 50m",
         discount: "15% OFF",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/Vietnam_Airlines_logo.svg/1200px-Vietnam_Airlines_logo.svg.png",
+        logo: "/images/air1.jpg",
+        ticketOptions: [
+          {
+            name: "Nguyên bản",
+            price: "1.666.823 VND/khách",
+            details: [
+              "Hành lý xách tay 7kg",
+              "Không hành lý ký gửi",
+              "Không hoàn vé",
+            ],
+          },
+          {
+            name: "Hành lý+",
+            price: "1.881.223 VND/khách",
+            details: [
+              "Hành lý xách tay 7kg",
+              "Hành lý ký gửi 15kg",
+              "Không hoàn vé",
+            ],
+          },
+        ],
       },
       {
         airline: "Bamboo Airways",
@@ -43,7 +89,27 @@ const HomePage = () => {
         arrival: "HAN",
         duration: "2h 45m",
         discount: "5% OFF",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Bamboo_Airways_logo.svg",
+        logo: "/images/air2.jpg",
+        ticketOptions: [
+          {
+            name: "Nguyên bản",
+            price: "1.666.823 VND/khách",
+            details: [
+              "Hành lý xách tay 7kg",
+              "Không hành lý ký gửi",
+              "Không hoàn vé",
+            ],
+          },
+          {
+            name: "Hành lý+",
+            price: "1.881.223 VND/khách",
+            details: [
+              "Hành lý xách tay 7kg",
+              "Hành lý ký gửi 15kg",
+              "Không hoàn vé",
+            ],
+          },
+        ],
       },
     ];
     setFlights(defaultFlights);
@@ -52,15 +118,35 @@ const HomePage = () => {
   const handleSearch = () => {
     const simulatedFlights = [
       {
-        airline: "Maynor Chu",
-        flight: "122122",
-        price: "2,000000,000 đ",
-        time: "21:00",
+        airline: "chu nha",
+        flight: "VJ123",
+        price: "2,000,000 đ",
+        time: "16:00",
         departure: "SGN",
         arrival: "HAN",
-        duration: "2h 45m",
-        discount: "5% OFF",
-        logo: "https://upload.wikimedia.org/wikipedia/commons/2/2e/Bamboo_Airways_logo.svg",
+        duration: "2h 30m",
+        discount: "10% OFF",
+        logo: "/images/air1.jpg",
+        ticketOptions: [
+          {
+            name: "Nguyên bản",
+            price: "1.666.823 VND/khách",
+            details: [
+              "Hành lý xách tay 7kg",
+              "Không hành lý ký gửi",
+              "Không hoàn vé",
+            ],
+          },
+          {
+            name: "Hành lý+",
+            price: "1.881.223 VND/khách",
+            details: [
+              "Hành lý xách tay 7kg",
+              "Hành lý ký gửi 15kg",
+              "Không hoàn vé",
+            ],
+          },
+        ],
       },
     ];
     setFlights(simulatedFlights);
@@ -76,6 +162,11 @@ const HomePage = () => {
   const [tempAdults, setTempAdults] = useState(adults);
   const [tempChildren, setTempChildren] = useState(children);
   const [tempRooms, setTempRooms] = useState(rooms);
+  const [seatClass, setSeatClass] = useState("economy"); //hạng ghê
+  const [isRoundTrip, setIsRoundTrip] = useState(false); //Khứ hồi
+  const [selectedFlight, setSelectedFlight] = useState(null); //Đặt vé
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [showCheckout, setShowCheckout] = useState(false);
 
   const toggleDropdown = () => setIsOpen(!isOpen);
 
@@ -89,6 +180,16 @@ const HomePage = () => {
     setChildren(tempChildren);
     setRooms(tempRooms);
     setIsOpen(false);
+  };
+  // Chọn hạng vé khi đã ấn đặt vé
+  const handleChooseOption = (option) => {
+    setSelectedFlight(selectedFlight);
+    setSelectedOption(option);
+    setShowCheckout(false);
+  };
+  const handleBookticket = (flight) => {
+    setSelectedFlight(flight);
+    setShowCheckout(true);
   };
   return (
     <div className="homepage-container">
@@ -104,9 +205,7 @@ const HomePage = () => {
           <div className="container_search_value">
             <div className="titleSelect">
               <img src="/images/live-view.svg" alt="user" />
-              <p className="textImageSearch">
-                Thành phố, địa điểm hoặc tên khách sạn:
-              </p>
+              <p className="textImageSearch">Thành phố, địa điểm đi:</p>
             </div>
             <input
               type="text"
@@ -117,21 +216,75 @@ const HomePage = () => {
           </div>
           <div className="container_search_value">
             <div className="titleSelect">
-              <img src="/images/plane-departure.svg" alt="user" />
-              <p className="textImageSearch">Ngày nhận phòng:</p>
+              <img src="/images/live-view.svg" alt="user" />
+              <p className="textImageSearch">Thành phố, địa điểm đến:</p>
             </div>
             <input
-              type="date"
-              value={date}
-              onChange={(e) => setDate(e.target.value)}
+              type="text"
+              placeholder="Điểm đến"
+              value={destination}
+              onChange={(e) => setDestination(e.target.value)}
             />
           </div>
+          <div className="container_search_value">
+            <div className="titleSelect">
+              <FontAwesomeIcon
+                icon={faCalendarDays}
+                className="calendar-icon"
+              />
+              <p className="textImageSearch">Ngày khởi hành:</p>
+            </div>
 
+            <DatePicker
+              selected={date ? new Date(date) : null}
+              onChange={(date) => setDate(date.toISOString().slice(0, 10))}
+              dateFormat="dd/MM/yyyy"
+              className="custom-Date"
+              placeholderText="Chọn ngày đi"
+            />
+          </div>
+          <div className="container_search_value">
+            <div className="titleSelect">
+              <FontAwesomeIcon icon={faChair} className="seat-icon" />
+              <p className="textImageSearch">Hạng ghế:</p>
+            </div>
+            <select
+              value={seatClass}
+              onChange={(e) => setSeatClass(e.target.value)}
+              className="select_class_seat"
+            >
+              <option value="economy">Phổ thông</option>
+              <option value="business">Thương gia</option>
+            </select>
+          </div>
+          <div className="container_search_value">
+            <div className="titleSelect">
+              <input
+                type="checkbox"
+                id="roundTrip"
+                checked={isRoundTrip}
+                onChange={() => setIsRoundTrip(!isRoundTrip)}
+                className="check-box-input"
+              />
+              <p className="textImageSearch">Khứ hồi:</p>
+            </div>
+            {isRoundTrip && (
+              <>
+                <DatePicker
+                  selected={date ? new Date(date) : null}
+                  onChange={(date) => setDate(date.toISOString().slice(0, 10))}
+                  dateFormat="dd/MM/yyyy"
+                  className="custom-Date"
+                  placeholderText="Chọn ngày về"
+                />
+              </>
+            )}
+          </div>
           <div className="container_ResponseSearch container_search_value">
             <div className="containerSelectInputSearch">
               <div className="titleSelect">
                 <img src="/images/user.svg" alt="user" />
-                <p className="textImageSearch">Số người</p>
+                <p className="textImageSearch">Số hành khách</p>
               </div>
               <div className="quantitySelector">
                 <div className="selected_user" onClick={toggleDropdown}>
@@ -221,7 +374,11 @@ const HomePage = () => {
       </section>
 
       <section className="flights-list">
-        <h3>Các chuyến bay</h3>
+        <h3>
+          {showDefaultFlights
+            ? "Các chuyến bay"
+            : "Kết quả tìm kiếm chuyến bay"}
+        </h3>
         <div className="flights">
           {flights.map((flight, index) => (
             <div className="flight-card" key={index}>
@@ -249,11 +406,28 @@ const HomePage = () => {
                 <p className="flight-price">
                   <strong>Giá vé:</strong> {flight.price}
                 </p>
-                <button>Đặt vé</button>
+                <button onClick={() => handleBookticket(flight)}>Đặt vé</button>
               </div>
             </div>
           ))}
         </div>
+        {/* Box chi tiết - NẰM NGOÀI .map() */}
+        {showCheckout ? (
+          <FlightDetailBox
+            flight={selectedFlight}
+            onClose={() => setSelectedFlight(null)}
+            onChoose={handleChooseOption}
+          />
+        ) : (
+          <>
+            <FlightCheckoutPage
+              selectedFlight={selectedFlight}
+              selectedOption={selectedOption}
+              onConfirm={() => alert("Thanh toán thành công")}
+              onClose={() => setSelectedFlight(null)}
+            />
+          </>
+        )}
       </section>
       <div className="place_explore">
         <div className="title_place_explore">

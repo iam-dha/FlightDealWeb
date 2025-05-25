@@ -1,0 +1,29 @@
+/* Container cho loading nhỏ */
+.smallLoadingContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px; /* Kích thước container */
+  height: 50px;
+  margin: 0 auto; /* Canh giữa */
+}
+
+/* Spinner nhỏ */
+.spinner {
+  width: 20px; /* Kích thước nhỏ hơn */
+  height: 20px;
+  border: 3px solid #e0e0e0; /* Màu nền của spinner */
+  border-top: 3px solid #3498db; /* Màu hiệu ứng */
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite; /* Hiệu ứng xoay */
+}
+
+/* Keyframes cho hiệu ứng xoay */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

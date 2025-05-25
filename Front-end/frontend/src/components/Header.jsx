@@ -15,7 +15,7 @@ const Header = () => {
         <a href="/home">Trang chủ</a>
         <a href="/hotel">Khách sạn</a>
         <a href="/flight">Vé máy bay</a>
-        <a href="#">Đưa đón sân bay</a>
+        <a href="/transfer">Đưa đón sân bay</a>
         <a href="/promotion">Ưu đãi</a>
       </nav>
       <div className="user-avatar" onClick={toggleMenu}>
@@ -39,10 +39,10 @@ const Header = () => {
               <Link to="/user/account">Hồ sơ người dùng</Link>
             </li>
             <li>
-              <a href="#">Cài đặt</a>
+              <a href="/transaction-history">Lịch sử giao dịch</a>
             </li>
             <li>
-              <a href="/">Đăng xuất</a>
+              <a href="/sign-in">Đăng xuất</a>
             </li>
           </ul>
         </div>

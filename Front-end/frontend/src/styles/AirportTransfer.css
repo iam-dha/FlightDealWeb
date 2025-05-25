@@ -1,0 +1,130 @@
+.airport-transfer-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  position: relative;
+  margin-bottom: 48px;
+}
+.search-card {
+  min-width: 980px;
+  margin-top: -70px !important;
+  margin: 0 auto;
+  width: 65%;
+  z-index: 10;
+  padding: 12px;
+  border-radius: 8px;
+  background-color: #fff;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+.form-grid-transfer {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+.form-grid-item_transfer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.text-item-search-transfer {
+  color: rgba(3, 18, 26, 1);
+  line-height: 16px;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 0;
+  margin: 0;
+}
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.input-with-icon .icon {
+  margin-right: 8px;
+  font-size: 18px;
+  color: #3498db; /* Màu xanh nhạt */
+}
+
+.input-with-icon input {
+  border: none;
+  outline: none;
+  flex: 1;
+  font-size: 16px;
+  background: transparent;
+}
+.des-select-vehicle {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+}
+.text_why_vehicle {
+  text-align: center;
+  margin-bottom: 64px;
+  color: #03121a !important;
+  font-weight: 500;
+  font-size: 16px;
+  font-family: Godwit, sans-serif;
+  line-height: 1.8;
+}
+.des_list_item_vehicle {
+  display: flex;
+}
+.des_item_vehicle {
+  max-width: 320px;
+  flex: 1;
+  align-items: center;
+  padding-left: 12px;
+  padding-right: 12px;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.img_des_vehicle {
+  width: 100px;
+}
+.container_text_vehicle {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.text_bold_des_vehicle {
+  margin: 0px;
+  margin-bottom: 12px;
+  font-size: 20px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.2;
+  letter-spacing: 0.3px;
+  color: #393939;
+  text-align: center;
+}
+.viewer_content_vehicle {
+  font-size: 14px;
+  font-weight: 500;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1.71;
+  letter-spacing: 0.1px;
+  color: #696969;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}

@@ -1,0 +1,703 @@
+/* Container Details Hotel*/
+.container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: fit-content;
+}
+.icon {
+  width: 24px;
+  height: 24px;
+}
+.container_DetailsHotel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.containerSearchResult {
+  width: calc(100% - 150px);
+}
+.container_review_img_hotel {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+.container_review_img_hotel > * {
+  width: calc(50% - 12px);
+}
+.text_title_hotel {
+  color: rgba(28, 27, 30, 1);
+  font-family: Mulish;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 56px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.container_title_review_introduce_hotel {
+  display: flex;
+  flex-direction: column;
+}
+.container_title_review_hotel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.content_details_hotel {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.review_hotel {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+}
+.icon_star {
+  width: 24px;
+}
+.star {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+}
+.detail_hotel {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.totalReview {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+}
+.iconTotalReview {
+  display: flex;
+  flex-direction: row;
+  gap: 4px;
+  align-items: center;
+}
+.text_point_review {
+  color: rgba(219, 36, 45, 1);
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+}
+.textTotalReview {
+  color: rgba(96, 93, 98, 1);
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.textReview {
+  color: rgba(28, 27, 30, 1);
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+.textTotalReview {
+  color: rgba(96, 93, 98, 1);
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+}
+.container_item_address {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.typeHotel {
+  border-radius: 8px;
+  border: 1px solid rgba(19, 99, 151, 1);
+  padding: 4px 8px;
+}
+.textTypeHotel {
+  margin: 0;
+  padding: 0;
+  font-family: Mulish;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15.06px;
+  text-align: left;
+  color: rgba(19, 99, 151, 1);
+}
+.container_introduce_hotel {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 50px;
+  width: 480px;
+}
+.text_introduce_hotel {
+  width: 100%;
+}
+.container_title_introduce_hotel {
+  width: 100%;
+}
+.textTitleIntroduce {
+  color: rgba(0, 0, 0, 1);
+  font-family: Mulish;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 44px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  text-align: center;
+}
+.container_img_hotel {
+  flex-grow: 1;
+  margin-top: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.container_bar_contact {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+  justify-content: flex-end;
+}
+.item_contact {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+.item_contact:hover {
+  transform: scale(1.05);
+}
+.item_contact:active {
+  transform: scale(0.95);
+}
+.text_item_contact {
+  color: rgba(28, 27, 30, 1);
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.container_contact_img_hotel {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+  justify-content: flex-end;
+}
+.container_contact_img_hotel > * {
+  width: calc(50% - 12px);
+}
+.container_img_hotel_left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: end;
+}
+.container_img_hotel_right {
+  display: flex;
+  justify-content: center;
+}
+.img1,
+.img2,
+.img3 {
+  object-fit: cover;
+}
+.img1 {
+  width: 80%;
+  height: auto;
+  margin-bottom: 24px;
+  aspect-ratio: 5 / 3;
+}
+.img2 {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 5 / 3;
+}
+.img3 {
+  width: 100%;
+  aspect-ratio: 87 / 100;
+}
+.container_btn_XemThemimg {
+  width: 240px;
+  height: 40px;
+  border-radius: 16px;
+  padding: 4px 16px;
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(19, 99, 151, 1);
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+.container_btn_XemThemimg:hover {
+  transform: scale(1.05);
+}
+.container_btn_XemThemimg:active {
+  transform: scale(0.95);
+}
+.text_Xemthemimg {
+  color: rgba(19, 99, 151, 1);
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.imgPhoto {
+  width: 24px;
+  height: 24px;
+}
+/* Thông tin khác */
+.container_information_hotel_other {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  gap: 15px;
+}
+.container_parameter_utility_hotel {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.container_parameter_hotel {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.textParameterUtilityHotel {
+  margin-left: 5px;
+  font-family: Mulish;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 38px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: rgba(0, 0, 0, 1);
+}
+.list_item_parameter_hotel {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+.list_item_parameter_1 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.item_parameter_hotel {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+.item_parameter_hotel_distance,
+.item_parameter_hotel_Build {
+  display: none;
+}
+.list_item_parameter_1_Delete768 {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.item_parameter_information {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.text_parameter {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: rgba(72, 70, 74, 1);
+}
+.text_information {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: rgba(28, 27, 30, 1);
+}
+.container_list_item_utility {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.container_list_item_utility_row {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.container_item_utility {
+  border-radius: 8px;
+  border: 0.5px solid rgba(174, 170, 175, 1);
+  padding: 24px 0px;
+  width: 124px;
+  height: 108px;
+  gap: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+.container_item_utility:hover,
+.btn_KhamPhaThem:hover {
+  transform: scale(1.03);
+}
+.container_item_utility:active,
+.btn_KhamPhaThem:active {
+  transform: scale(0.98);
+}
+.text_item_utility {
+  color: rgba(28, 27, 30, 1);
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  text-align: center;
+}
+.text_item_utility_more {
+  color: rgba(19, 99, 151, 1);
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  text-align: center;
+}
+/* Map */
+.container_Map {
+  border-radius: 8px;
+  border: 0.5px solid rgba(174, 170, 175, 1);
+  width: 386px;
+  min-width: 386px;
+  height: 596px;
+  padding: 16px 0px 24px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.container_title_and_map {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  justify-content: center;
+}
+.text_map {
+  color: rgba(19, 99, 151, 1);
+  font-family: Mulish;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  text-align: center;
+}
+.map {
+  width: 100%;
+  height: 453px;
+  border-radius: 8px;
+  border: 0.5px solid rgba(174, 170, 175, 1);
+  overflow: hidden;
+}
+.btn_KhamPhaThem {
+  width: calc(100% - 20px);
+  border: 1px solid rgba(19, 99, 151, 1);
+  border-radius: 16px;
+  padding: 8px 16px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+.text_KhamPhaThem {
+  color: rgba(19, 99, 151, 1);
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+/* Số nhà hàng và địa điểm du lịch */
+.container_number_restaurant_locationtour {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+}
+.container_number_item {
+  width: 48%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.container_number_title_item {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: end;
+  justify-content: space-between;
+}
+.titleNumber_restaurant {
+  color: rgba(219, 36, 45, 1);
+  font-family: Mulish;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 68px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.titleNumber_location_tour {
+  font-family: Mulish;
+  font-size: 50px;
+  font-weight: 700;
+  line-height: 68px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: rgba(19, 99, 151, 1);
+}
+.title_item_scope {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.title_restaurant {
+  color: rgba(219, 36, 45, 1);
+  font-family: Mulish;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 38px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.title_location_tour {
+  color: rgba(19, 99, 151, 1);
+  font-family: Mulish;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 38px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.textScope {
+  color: rgba(28, 27, 30, 1);
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.number_restaurant {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  align-items: center;
+}
+.container_btn_ViewAll {
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  user-select: none;
+}
+.container_btn_ViewAll:hover {
+  transform: scale(1.03);
+}
+.container_btn_ViewAll:active {
+  transform: scale(0.98);
+}
+.textViewAll {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: rgba(19, 99, 151, 1);
+}
+.container_list_item_restaurant_tour {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 24px;
+}
+.container_item_restaurant_tour {
+  width: 181px;
+  height: 285px;
+  gap: 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.img_res_tour {
+  width: 181px;
+  height: 181px;
+  object-fit: cover;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.detail_item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.text_restaurant_other {
+  color: rgba(28, 27, 30, 1);
+  font-family: Mulish;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.text_scope_restaurant {
+  color: rgba(72, 70, 74, 1);
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+/* Responsive */
+@media (max-width: 1920px) {
+  .containerSearchResult {
+    width: calc(100% - 350px);
+  }
+}
+@media (max-width: 1520px) {
+  .containerSearchResult {
+    width: calc(100% - 150px);
+  }
+}
+@media (max-width: 1366px) {
+  .containerSearchResult {
+    width: calc(100% - 100px);
+  }
+}
+@media (max-width: 1024px) {
+  .container_introduce_hotel {
+    width: 386px;
+  }
+  .container_information_hotel_other {
+    flex-direction: column;
+  }
+  .list_item_parameter_hotel {
+    justify-content: space-between;
+  }
+  .container_Map {
+    width: 100%;
+  }
+  .btn_KhamPhaThem {
+    width: 360px;
+  }
+  .container_number_restaurant_locationtour {
+    flex-direction: column;
+  }
+  .container_number_item {
+    width: 100%;
+  }
+}
+@media (max-width: 900px) {
+  .container_introduce_hotel {
+    width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container_review_img_hotel {
+    flex-direction: column;
+  }
+  .container_introduce_hotel {
+    width: 100%;
+    margin-top: 30px;
+  }
+  .container_img_hotel {
+    margin-top: 30px;
+  }
+  .container_review_img_hotel > * {
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .containerSearchResult {
+    width: calc(100% - 30px);
+  }
+  .btn_KhamPhaThem {
+    width: fit-content;
+  }
+  .list_item_parameter_hotel {
+    gap: 5px;
+  }
+}
+@media (max-width: 500px) {
+  .list_item_parameter_1_Delete768 {
+    display: none;
+  }
+  .item_parameter_hotel_distance,
+  .item_parameter_hotel_Build {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+  }
+}

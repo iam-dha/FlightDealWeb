@@ -1,0 +1,77 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4); /* Mờ nền */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Trên cùng */
+}
+.flight-detail-box {
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1000px;
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  z-index: 999;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.ticket-options {
+  display: flex;
+  overflow-x: auto;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.ticket-card {
+  min-width: 220px;
+  border: 1px solid #eee;
+  padding: 16px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  background-color: #f9f9f9;
+}
+
+.ticket-price {
+  color: #e74c3c;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.ticket-card ul {
+  padding-left: 16px;
+  margin: 0;
+}
+
+.ticket-card li {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 5px;
+}
+.btn-close {
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
