@@ -3,8 +3,9 @@ import style from "../styles/style_global.module.css";
 import { useState, useEffect } from "react";
 import Loading from "../components/Loading";
 import Alert from "../components/Alert";
+import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
-
+import { loginUser } from "../services/api";
 export default function SignIn() {
   const navigate = useNavigate();
   const [isEyeVisible, setIsEyeVisible] = useState(false);
@@ -15,7 +16,6 @@ export default function SignIn() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    role: 1,
   });
   // Hàm xử lý khi người dùng click vào icon
   const toggleIcon = () => {
@@ -28,18 +28,29 @@ export default function SignIn() {
   // Đăng nhập
   const handleSignIn = async () => {
     setIsLoading(true);
-    // const results = await loginUser(formData);
-    setIsLoading(false);
-    // console.log(results)
-    // if (results.status) {
-    //   setErrorMessage(results.message);
-    //   setAlertKey((prevKey) => prevKey + 1);
-    setCheckSignIn(true);
-    setErrorMessage("Đăng nhập thành công!");
-    setTimeout(() => {
-      navigate("/home");
-    }, 1000);
+    setErrorMessage(""); // Xóa lỗi cũ nếu có
+
+    try {
+      const results = await loginUser(formData);
+      // console.log(results);
+      Cookies.set("accessToken", results?.data?.accessToken, { expires: 7 });
+      setCheckSignIn(true);
+      setErrorMessage("Đăng nhập thành công!");
+
+      setTimeout(() => {
+        navigate("/home");
+      }, 1000);
+    } catch (error) {
+      // ✅ Nếu lỗi từ server
+      const message =
+        error.response?.data?.error || "Đăng nhập thất bại. Vui lòng thử lại.";
+      setErrorMessage(message);
+      setCheckSignIn(false);
+    } finally {
+      setIsLoading(false);
+    }
   };
+
   // Ấn enter để đăng nhập
   const handleKeyDown = (event) => {
     if (event.key === "Enter") {
@@ -101,7 +112,7 @@ export default function SignIn() {
               <div>{isLoading ? <Loading /> : ""}</div>
             </div>
             <a
-              href="/forgot-password"
+              href="/reset-password"
               className={`${styles.container_forget_pass} ${style.font_medium_16px_logo} ${style.item_text}`}
               passHref
             >

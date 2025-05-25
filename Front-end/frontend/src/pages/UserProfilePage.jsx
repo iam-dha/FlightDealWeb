@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/UserProfilePage.css";
+import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
+import { getUser } from "../services/api";
 const UserProfilePage = () => {
   const [activeTab, setActiveTab] = useState("profile");
   const navigate = useNavigate();
@@ -10,7 +12,31 @@ const UserProfilePage = () => {
   const [avatar, setAvatar] = useState(
     "https://www.w3schools.com/howto/img_avatar.png"
   );
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const accessToken = Cookies.get("accessToken"); // Lấy token từ cookie
+        // console.log("accessToken:", accessToken);
+        if (!accessToken) {
+          console.warn("Không có accessToken trong cookies.");
+          return;
+        }
 
+        const userData = await getUser(accessToken);
+        setProfile({
+          name: userData?.data?.fullName || "",
+          email: userData?.data?.email || "",
+          phone: userData?.data?.phone || "",
+          address: userData?.data?.address || "",
+        });
+        // console.log("Dữ liệu người dùng:", userData);
+      } catch (error) {
+        console.error("Lỗi khi lấy thông tin người dùng:", error);
+      }
+    };
+
+    fetchUser();
+  }, []);
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -23,6 +49,7 @@ const UserProfilePage = () => {
     name: "Nguyễn Văn A",
     email: "nguyenvana@gmail.com",
     phone: "0123 456 789",
+    address: "ngõ 123",
   });
 
   const handleChange = (e) => {
@@ -98,6 +125,9 @@ const UserProfilePage = () => {
                   <p>
                     <strong>Số điện thoại:</strong> {profile.phone}
                   </p>
+                  <p>
+                    <strong>Địa chỉ:</strong> {profile.address}
+                  </p>
                 </div>
               </div>
               <div className="button-group">
@@ -137,6 +167,13 @@ const UserProfilePage = () => {
                       value={profile.phone}
                       onChange={handleChange}
                       placeholder="Số điện thoại"
+                    />
+                    <input
+                      type="text"
+                      name="address"
+                      value={profile.address}
+                      onChange={handleChange}
+                      placeholder="Địa chỉ"
                     />
                     <div className="modal-buttons">
                       <button className="save-btn" onClick={handleSave}>

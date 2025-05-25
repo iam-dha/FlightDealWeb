@@ -1,9 +1,17 @@
 import styles from "../styles/auth_user.module.css";
 import style from "../styles/style_global.module.css";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Loading from "../components/Loading";
 import Alert from "../components/Alert";
+import { forgotPass, resetPassToken } from "../services/api";
+import { useNavigate, useParams, useLocation } from "react-router-dom";
 export default function ForgotPassword() {
+  const location = useLocation(); // lấy toàn bộ URL, bao gồm query
+  const path = location.pathname;
+  const tokenRequest = path.split("/").pop();
+  const query = location.search;
+  const navigate = useNavigate();
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const { selected } = 1;
   let backgroundImage;
   if (selected === "1") {
@@ -116,10 +124,7 @@ export default function ForgotPassword() {
 
   const handleNavigation = () => {
     if (dotSelected === 1) {
-      // Chuyển trang khi dotSelected === 1
-      //   router.push({
-      //     pathname: "/sign-in",
-      //   });
+      navigate("/sign-in");
     } else {
       // Nếu dotSelected khác 1, giảm giá trị dotSelected
       setDotSelected((prev) => prev - 1);
@@ -149,39 +154,31 @@ export default function ForgotPassword() {
   const [isModalVisible, setIsModalVisible] = useState(false);
   // Dot
   const [id, setId] = useState();
+  const formData = {
+    email: email,
+  };
   const handleClickConfirm = async () => {
     setIsLoading(true);
     if (dotSelected == 1) {
-      //   const results = await sendOTPforgotPassword(email);
-
-      setId(1);
-      setCheckSendOTP(true);
+      setIsLoading(true);
+      const results = await forgotPass(formData);
       setIsLoading(false);
-      setErrorMessage("Gửi OTP thành công !");
-      setDotSelected(dotSelected + 1);
+
+      if (results) {
+        // ✅ Gửi email thành công
+        setShowSuccessPopup(true); // <-- bạn tạo state này để điều khiển popup
+      } else {
+        // ❌ Có thể hiện thông báo lỗi nếu cần
+        setErrorMessage("Không thể gửi email, vui lòng thử lại.");
+      }
     }
+
     if (dotSelected == 2) {
-      const fullCode = code.join("");
-      const check = 0;
-      //   const results = await authAccount(fullCode, check, id);
-      setAlertKey((prevKey) => prevKey + 1);
-
-      setIsLoading(false);
-      setErrorMessage("Xác nhận OTP hợp lệ !");
-      setCheckSendOTP(true);
-      setDotSelected(dotSelected + 1);
-      //   } else {
-      //     setIsLoading(false);
-      //     setCheckSendOTP(false);
-      //     setErrorMessage("Mã OTP không chính xác !");
-      //   }
-    }
-    if (dotSelected == 3) {
       const data_form = {
         newPassword: password,
         reNewPassword: confirmPassword,
       };
-      //   const result = await changePassword(data_form);
+      const result = await resetPassToken(data_form, tokenRequest);
 
       //   if (result.data?.result == true) {
       setIsLoading(false);
@@ -201,6 +198,14 @@ export default function ForgotPassword() {
   const handleCloseModal = () => {
     setIsModalVisible(false);
   };
+  useEffect(() => {
+    // Nếu có thêm path sau /reset-password/, thì dotSelected = 2
+    const hasPathParam = location.pathname.split("/").length > 2;
+
+    if (hasPathParam) {
+      setDotSelected(2);
+    }
+  }, [location.pathname]);
   return (
     <>
       <div className={styles.container}>
@@ -227,8 +232,6 @@ export default function ForgotPassword() {
                 {dotSelected == 1
                   ? "Nhập Email đăng ký "
                   : dotSelected == 2
-                  ? "Nhập mã OTP"
-                  : dotSelected == 3
                   ? "Nhập lại mật khẩu"
                   : ""}
               </p>
@@ -241,11 +244,6 @@ export default function ForgotPassword() {
                 <div
                   className={
                     dotSelected == 2 ? styles.dot_selected : styles.dot
-                  }
-                ></div>
-                <div
-                  className={
-                    dotSelected == 3 ? styles.dot_selected : styles.dot
                   }
                 ></div>
               </div>
@@ -265,33 +263,31 @@ export default function ForgotPassword() {
                 }}
               />
             )}
-            {/* Mã xác thực bước 2 */}
-            {dotSelected == 2 && (
-              <>
-                <p className={styles.textCodeConfirm}>
-                  Mã xác thực gửi về Email "{email}"
-                </p>
-                <div className={styles.codeContainer}>
-                  {code.map((digit, index) => (
-                    <input
-                      key={index}
-                      id={`code-input-${index}`}
-                      type="text"
-                      maxLength="1"
-                      value={digit}
-                      onPaste={index === 0 ? handlePaste : null}
-                      onChange={(e) => handleCodeChange(e, index)}
-                      onKeyDown={(e) => handleKeyDown(e, index)}
-                      onInput={(e) => handleInput(e, index)}
-                      ref={(el) => (inputsRef.current[index] = el)}
-                      className={styles.codeInput}
-                    />
-                  ))}
+            {showSuccessPopup && (
+              <div className={styles.overlay}>
+                <div className={styles.modal}>
+                  <div className={styles.confirm}>
+                    <img src="/images/confirm.svg" className={style.icon} />
+                    <p className={style.font_semibold_14px_gray9}>
+                      Đặt lại mật khẩu thành công
+                    </p>
+                    <p className={style.font_regular}>
+                      Vui lòng kiểm tra email để lấy liên kết đặt lại mật khẩu.
+                    </p>
+                  </div>
+                  <div className={styles.container_cancel_confirm}>
+                    <button
+                      className={`${style.item_text} ${styles.btn_sign_in_b3}`}
+                      onClick={() => setShowSuccessPopup(false)}
+                    >
+                      Đóng
+                    </button>
+                  </div>
                 </div>
-              </>
+              </div>
             )}
             {/* Nhập lại mật khẩu bước 3 */}
-            {dotSelected == 3 && (
+            {dotSelected == 2 && (
               <>
                 <div className={styles.container_input_pass}>
                   <input
@@ -339,20 +335,6 @@ export default function ForgotPassword() {
               <p className={style.font_medium_white}>Xác nhận</p>
               <div>{isLoading ? <Loading /> : ""}</div>
             </div>
-            {/* Gửi lại mã xác thực bước 2 */}
-            {dotSelected == 2 && (
-              <div className={styles.resend_code}>
-                <p className={styles.textCodeConfirm}>Gửi lại mã xác thực</p>
-                <img
-                  src="/images/cooperate/update.svg"
-                  alt="icon-resend-code"
-                  onClick={resendCode}
-                  className={`${style.icon_30} ${styles.reload} ${
-                    isRotating ? styles.rotating : ""
-                  }`}
-                />
-              </div>
-            )}
             {/* Bước 3 thành công */}
             {isModalVisible && (
               <>
@@ -375,9 +357,8 @@ export default function ForgotPassword() {
                         Hủy
                       </p>
                       <a
-                        href="sign-in"
+                        href="/sign-in"
                         className={`${styles.btn_sign_in_b3} ${style.item_text}`}
-                        passHref
                       >
                         <p className={style.font_medium_16px_logo}>Đăng nhập</p>
                       </a>

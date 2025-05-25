@@ -3,9 +3,30 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import "../styles/HotelPage.css";
 import HotelSearchBar from "../components/SearchHotel";
+import { getHotel } from "../services/api";
+import Cookies from "js-cookie";
 const HotelPage = () => {
   const [hotels, setHotels] = useState([]);
+  useEffect(() => {
+    const fetchHotel = async () => {
+      try {
+        const accessToken = Cookies.get("accessToken"); // Lấy token từ cookie
+        // console.log("accessToken:", accessToken);
+        if (!accessToken) {
+          console.warn("Không có accessToken trong cookies.");
+          return;
+        }
 
+        const hotelData = await getHotel(accessToken);
+        setHotels(hotelData?.data?.data);
+        // console.log("Dữ liệu người dùng:", hotelData);
+      } catch (error) {
+        console.error("Lỗi khi lấy thông tin người dùng:", error);
+      }
+    };
+
+    fetchHotel();
+  }, []);
   useEffect(() => {
     const defaultHotels = [
       {
@@ -48,14 +69,14 @@ const HotelPage = () => {
         <div className="hotels">
           {hotels.map((hotel, index) => (
             <div className="hotel-card" key={index}>
-              <img src={hotel.image} alt={hotel.name} className="hotel-image" />
+              <img
+                src={hotel.thumbnail}
+                alt={hotel.name}
+                className="hotel-image"
+              />
               <div className="hotel-info">
                 <h3>{hotel.name}</h3>
-                <p>{hotel.location}</p>
-                <p className="hotel-price">{hotel.price}</p>
-                <p>
-                  ⭐ {hotel.rating} ({hotel.reviews} đánh giá)
-                </p>
+                <p>{hotel.address}</p>
                 <button>Đặt phòng</button>
               </div>
             </div>

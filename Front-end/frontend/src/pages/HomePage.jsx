@@ -8,151 +8,53 @@ import { faCalendarDays, faChair } from "@fortawesome/free-solid-svg-icons";
 import "../styles/HomePage.css";
 import FlightDetailBox from "../components/FlightDetailBox";
 import FlightCheckoutPage from "./FlightCheckoutPage";
+import { searchFly, getHotel } from "../services/api";
+import Cookies from "js-cookie";
 const HomePage = () => {
-  const [destination, setDestination] = useState("");
-  const [date, setDate] = useState("");
+  const [hotels, setHotels] = useState([]);
+  const [from, setFrom] = useState("SGN");
+  const [to, setTo] = useState("HAN");
+  const [date, setDate] = useState("2025-06-01");
   const [passenger, setPassenger] = useState(1);
   const [flightClass, setFlightClass] = useState("ECONOMY");
   const [flights, setFlights] = useState([]);
   const [showDefaultFlights, setShowDefaultFlights] = useState(true);
 
-  useEffect(() => {
-    const defaultFlights = [
-      {
-        airline: "VietJet Air",
-        flight: "VJ123",
-        price: "2,000,000 đ",
-        time: "16:00",
-        departure: "SGN",
-        arrival: "HAN",
-        duration: "2h 30m",
-        discount: "10% OFF",
-        logo: "/images/air1.jpg",
-        ticketOptions: [
-          {
-            name: "Nguyên bản",
-            price: "1.666.823 VND/khách",
-            details: [
-              "Hành lý xách tay 7kg",
-              "Không hành lý ký gửi",
-              "Không hoàn vé",
-            ],
-          },
-          {
-            name: "Hành lý+",
-            price: "1.881.223 VND/khách",
-            details: [
-              "Hành lý xách tay 7kg",
-              "Hành lý ký gửi 15kg",
-              "Không hoàn vé",
-            ],
-          },
-        ],
-      },
-      {
-        airline: "Vietnam Airlines",
-        flight: "VN456",
-        price: "3,500,000 đ",
-        time: "18:30",
-        departure: "SGN",
-        arrival: "HAN",
-        duration: "2h 50m",
-        discount: "15% OFF",
-        logo: "/images/air1.jpg",
-        ticketOptions: [
-          {
-            name: "Nguyên bản",
-            price: "1.666.823 VND/khách",
-            details: [
-              "Hành lý xách tay 7kg",
-              "Không hành lý ký gửi",
-              "Không hoàn vé",
-            ],
-          },
-          {
-            name: "Hành lý+",
-            price: "1.881.223 VND/khách",
-            details: [
-              "Hành lý xách tay 7kg",
-              "Hành lý ký gửi 15kg",
-              "Không hoàn vé",
-            ],
-          },
-        ],
-      },
-      {
-        airline: "Bamboo Airways",
-        flight: "QH789",
-        price: "2,800,000 đ",
-        time: "20:00",
-        departure: "SGN",
-        arrival: "HAN",
-        duration: "2h 45m",
-        discount: "5% OFF",
-        logo: "/images/air2.jpg",
-        ticketOptions: [
-          {
-            name: "Nguyên bản",
-            price: "1.666.823 VND/khách",
-            details: [
-              "Hành lý xách tay 7kg",
-              "Không hành lý ký gửi",
-              "Không hoàn vé",
-            ],
-          },
-          {
-            name: "Hành lý+",
-            price: "1.881.223 VND/khách",
-            details: [
-              "Hành lý xách tay 7kg",
-              "Hành lý ký gửi 15kg",
-              "Không hoàn vé",
-            ],
-          },
-        ],
-      },
-    ];
-    setFlights(defaultFlights);
-  }, []);
+  const formData = {
+    from: from,
+    to: to,
+    date: date,
+  };
+  const handleSearch = async () => {
+    const accessToken = Cookies.get("accessToken");
+    const results = await searchFly(formData, accessToken);
+    setFlights(results.data.results);
 
-  const handleSearch = () => {
-    const simulatedFlights = [
-      {
-        airline: "chu nha",
-        flight: "VJ123",
-        price: "2,000,000 đ",
-        time: "16:00",
-        departure: "SGN",
-        arrival: "HAN",
-        duration: "2h 30m",
-        discount: "10% OFF",
-        logo: "/images/air1.jpg",
-        ticketOptions: [
-          {
-            name: "Nguyên bản",
-            price: "1.666.823 VND/khách",
-            details: [
-              "Hành lý xách tay 7kg",
-              "Không hành lý ký gửi",
-              "Không hoàn vé",
-            ],
-          },
-          {
-            name: "Hành lý+",
-            price: "1.881.223 VND/khách",
-            details: [
-              "Hành lý xách tay 7kg",
-              "Hành lý ký gửi 15kg",
-              "Không hoàn vé",
-            ],
-          },
-        ],
-      },
-    ];
-    setFlights(simulatedFlights);
     setShowDefaultFlights(false);
   };
+  useEffect(() => {
+    handleSearch();
+  }, []);
+  useEffect(() => {
+    const fetchHotel = async () => {
+      try {
+        const accessToken = Cookies.get("accessToken"); // Lấy token từ cookie
+        // console.log("accessToken:", accessToken);
+        if (!accessToken) {
+          console.warn("Không có accessToken trong cookies.");
+          return;
+        }
 
+        const hotelData = await getHotel(accessToken);
+        setHotels(hotelData?.data?.data);
+        // console.log("Dữ liệu người dùng:", hotelData);
+      } catch (error) {
+        console.error("Lỗi khi lấy thông tin người dùng:", error);
+      }
+    };
+
+    fetchHotel();
+  }, []);
   // search
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
@@ -191,6 +93,7 @@ const HomePage = () => {
     setSelectedFlight(flight);
     setShowCheckout(true);
   };
+  // console.log(flights);
   return (
     <div className="homepage-container">
       <Header />
@@ -210,8 +113,8 @@ const HomePage = () => {
             <input
               type="text"
               placeholder="Điểm đi"
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
+              value={from}
+              onChange={(e) => setFrom(e.target.value)}
             />
           </div>
           <div className="container_search_value">
@@ -222,8 +125,8 @@ const HomePage = () => {
             <input
               type="text"
               placeholder="Điểm đến"
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
+              value={to}
+              onChange={(e) => setTo(e.target.value)}
             />
           </div>
           <div className="container_search_value">
@@ -288,7 +191,7 @@ const HomePage = () => {
               </div>
               <div className="quantitySelector">
                 <div className="selected_user" onClick={toggleDropdown}>
-                  {`Người lớn: ${adults} - Trẻ em: ${children} - Phòng: ${rooms}`}
+                  {`Người lớn: ${adults} - Trẻ em: ${children} - Em bé: ${rooms}`}
                 </div>
                 {isOpen && (
                   <div className="dropdown">
@@ -333,7 +236,7 @@ const HomePage = () => {
                       </div>
                     </div>
                     <div className="option">
-                      <span>Phòng</span>
+                      <span>Em bé</span>
                       <div className="containerplusadd">
                         <button
                           className="buttonplusadd"
@@ -374,34 +277,30 @@ const HomePage = () => {
       </section>
 
       <section className="flights-list">
-        <h3>
-          {showDefaultFlights
-            ? "Các chuyến bay"
-            : "Kết quả tìm kiếm chuyến bay"}
-        </h3>
+        <h3>Các chuyến bay</h3>
         <div className="flights">
           {flights.map((flight, index) => (
             <div className="flight-card" key={index}>
               <div className="flight-logo">
-                <img src={flight.logo} alt={flight.airline} />
+                <img src="/images/air1.jpg" alt="" />
               </div>
               <div className="flight-info">
                 <div className="flight-header">
-                  <h4>{flight.airline}</h4>
+                  <h4>{flight.title}</h4>
                   <span className="flight-discount">{flight.discount}</span>
                 </div>
                 <p className="flight-details">
                   <strong>Chuyến bay:</strong> {flight.flight}
                 </p>
                 <p className="flight-details">
-                  <strong>Khởi hành:</strong> {flight.departure} &rarr;{" "}
-                  {flight.arrival}
+                  <strong>Khởi hành:</strong> {flight.iata_from} &rarr;{" "}
+                  {flight.iata_to}
                 </p>
-                <p className="flight-details">
+                {/* <p className="flight-details">
                   <strong>Giờ bay:</strong> {flight.time}
-                </p>
+                </p> */}
                 <p className="flight-details">
-                  <strong>Thời gian bay:</strong> {flight.duration}
+                  <strong>Thời gian bay:</strong> {flight.departure_time}
                 </p>
                 <p className="flight-price">
                   <strong>Giá vé:</strong> {flight.price}
@@ -442,50 +341,15 @@ const HomePage = () => {
               Không cần mất quá nhiều thời gian để di chuyển đến những địa điểm
               này từ khách sạn của bạn
             </p>
-            <div className="hotel-list">
-              {[
-                "Khách sạn gần Gerbera Shoes",
-                "Khách sạn gần Trường Tiểu học An Dương",
-                "Khách sạn gần Pizza 4P's Âu Cơ",
-                "Khách sạn gần Công an quận Tây Hồ",
-                "Khách sạn gần Westlake Hanoi",
-              ].map((name, index) => (
+            <div className="hotel-list" style={{ flexDirection: "row" }}>
+              {hotels.map((name, index) => (
                 <div className="hotel-card" key={index}>
                   <img
                     src="/images/hotel/item_explore.jpg"
                     alt="hotel"
                     className="hotel-image"
                   />
-                  <div className="hotel-name">{name}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-        <div className="item_place">
-          <div className="title_list_item_place">
-            <p className="text_title_list_item_place">
-              Khách sạn đa dạng và phù hợp dành cho bạn
-            </p>
-            <p className="text_des_list_item_place">
-              Từ những nơi nghỉ bình dân đến những khách sạn sang trọng nhất,
-              bạn đều có thể tìm thấy tại đây
-            </p>
-            <div className="hotel-list">
-              {[
-                "Khách sạn tốt nhất ",
-                "Khách sạn giá rẻ",
-                "Khách sạn gần Pizza 4P's Âu Cơ",
-                "Khách sạn gần Công an quận Tây Hồ",
-                "Khách sạn gần Westlake Hanoi",
-              ].map((name, index) => (
-                <div className="hotel-card" key={index}>
-                  <img
-                    src="/images/hotel/item_explore.jpg"
-                    alt="hotel"
-                    className="hotel-image"
-                  />
-                  <div className="hotel-name">{name}</div>
+                  <div className="hotel-name">{name.name}</div>
                 </div>
               ))}
             </div>

@@ -11,16 +11,23 @@ import "react-datepicker/dist/react-datepicker.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import ResultSearchVehicle from "../components/ResultSearchVehicle";
+import { carRoute } from "../services/api";
 const AirportTransfer = () => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [resultSearch, setResultSearch] = useState(false);
-  const handleSearch = () => {
+  const [formData, setFormData] = useState();
+  const data = {
+    iata: from,
+  };
+  const handleSearch = async () => {
+    const result = await carRoute(data);
+    setFormData(result.data.data);
     setResultSearch(true);
   };
-
+  // console.log(formData);
   return (
     <>
       <Header />

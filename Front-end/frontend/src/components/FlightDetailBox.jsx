@@ -14,38 +14,43 @@ function FlightDetailBox({ flight, onClose, onChoose }) {
         </div>
 
         <div className="flight-summary">
-          <strong>{flight.airline || "Chưa cập nhật"}</strong>
+          <strong>{flight.airline || "VietJa"}</strong>
           <p>
             <strong>Chuyến bay: </strong>
-            {flight.flight || "Chưa cập nhật"}
+            {flight.flight_number || "Chưa cập nhật"}
           </p>
           <p>
             <strong>Khởi hành: </strong>
-            {flight.departure || "Chưa cập nhật"} →{" "}
-            {flight.arrival || "Chưa cập nhật"}
+            {flight.iata_from || "Chưa cập nhật"} →{" "}
+            {flight.iata_to || "Chưa cập nhật"}
           </p>
           <p>
             <strong>Giờ bay: </strong>
-            {flight.time || "Chưa cập nhật"} (
-            {flight.duration || "Chưa cập nhật"})
+            {flight?.departure_date && flight?.departure_time
+              ? `${flight.departure_date.split("T")[0]} / ${
+                  flight.departure_time
+                }`
+              : "Chưa cập nhật"}
           </p>
         </div>
 
         <div className="ticket-options">
-          {flight.ticketOptions?.length > 0 ? (
-            flight.ticketOptions.map((option, i) => (
+          {flight.seat ? (
+            ["economy", "premium"].map((type, i) => (
               <div key={i} className="ticket-card">
-                <h4>{option.name || "Chưa cập nhật"}</h4>
                 <ul>
-                  {option.details?.length > 0 ? (
-                    option.details.map((d, j) => (
-                      <li key={j}>{d || "Chưa cập nhật"}</li>
-                    ))
-                  ) : (
-                    <li>Chưa cập nhật</li>
-                  )}
+                  <li>
+                    Ghế {type.charAt(0).toUpperCase() + type.slice(1)}:{" "}
+                    {flight.seat[type] ?? "Chưa cập nhật"}
+                  </li>
                 </ul>
-                <button onClick={() => onChoose(option)}>Chọn</button>
+                <button
+                  onClick={() =>
+                    onChoose({ type, quantity: flight.seat[type] })
+                  }
+                >
+                  Chọn
+                </button>
               </div>
             ))
           ) : (

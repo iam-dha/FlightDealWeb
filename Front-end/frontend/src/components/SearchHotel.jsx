@@ -1,54 +1,36 @@
 import React, { useState } from "react";
 import "../styles/SearchHotel.css";
 import { FaMapMarkerAlt, FaCalendarAlt, FaUser, FaBed } from "react-icons/fa";
-
+import { searchHotel } from "../services/api";
+import Cookies from "js-cookie";
+import { useNavigate } from "react-router-dom";
 const HotelSearchBar = () => {
   const [location, setLocation] = useState("");
   const [checkIn, setCheckIn] = useState("");
   const [checkOut, setCheckOut] = useState("");
   const [guests, setGuests] = useState(1);
   const [rooms, setRooms] = useState(1);
-  const [results, setResults] = useState([]);
+  const [data, setData] = useState([]);
+  const [hotelId, setHotelId] = useState("");
+  const navigate = useNavigate();
 
-  const hotelData = [
-    {
-      name: "Hotel Majestic Sài Gòn",
-      location: "Quận 1, TP. Hồ Chí Minh",
-      price: "2,000,000 đ/đêm",
-      rating: 8.5,
-      reviews: 1500,
-      image:
-        "https://cdn6.agoda.net/images/hotelimages/297/297/297_18050410450064028328.jpg",
-    },
-    {
-      name: "InterContinental Hanoi",
-      location: "Tây Hồ, Hà Nội",
-      price: "3,500,000 đ/đêm",
-      rating: 9.0,
-      reviews: 1200,
-      image:
-        "https://pix10.agoda.net/hotelImages/124/12474/12474_16030410180040512058.jpg",
-    },
-    {
-      name: "Vinpearl Resort Nha Trang",
-      location: "Nha Trang, Khánh Hòa",
-      price: "4,200,000 đ/đêm",
-      rating: 8.8,
-      reviews: 2000,
-      image:
-        "https://cdn6.agoda.net/images/hotelimages/333/3333/3333_16040414000040949304.jpg",
-    },
-  ];
+  const handleBooking = (index) => {
+    if (Array.isArray(data) && data.length > 0) {
+      setHotelId(data[index]._id); // cập nhật hotelId ngay lập tức
+      console.log("Hotel ID:", data[index]._id);
+    } else {
+      console.log("Không có khách sạn phù hợp");
+      setHotelId(null); // hoặc undefined
+    }
+    navigate(`/details-hotel/${data[index]._id}`);
+  };
 
-  const handleSearch = () => {
-    alert(
-      `Tìm khách sạn ở ${location}, từ ${checkIn} đến ${checkOut}, ${guests} khách, ${rooms} phòng.`
-    );
-    // Lọc kết quả theo location (giả lập)
-    const filtered = hotelData.filter((hotel) =>
-      hotel.name.toLowerCase().includes(location.toLowerCase())
-    );
-    setResults(filtered.length ? filtered : hotelData);
+  const handleSearch = async (index) => {
+    const accessToken = Cookies.get("accessToken");
+    const results = await searchHotel(accessToken, location);
+
+    const newHotels = results.data.data;
+    setData(newHotels); // cập nhật danh sách khách sạn
   };
 
   return (
@@ -102,19 +84,19 @@ const HotelSearchBar = () => {
         <button onClick={handleSearch}>🔍 Tìm kiếm</button>
       </div>
 
-      {results.length > 0 && (
+      {data.length > 0 && (
         <div className="hotels">
-          {hotelData.map((hotel, index) => (
+          {data.map((hotel, index) => (
             <div className="hotel-card" key={index}>
-              <img src={hotel.image} alt={hotel.name} className="hotel-image" />
+              <img
+                src={hotel.thumbnail}
+                alt={hotel.name}
+                className="hotel-image"
+              />
               <div className="hotel-info">
                 <h3>{hotel.name}</h3>
-                <p>{hotel.location}</p>
-                <p className="hotel-price">{hotel.price}</p>
-                <p>
-                  ⭐ {hotel.rating} ({hotel.reviews} đánh giá)
-                </p>
-                <button>Đặt phòng</button>
+                <p>{hotel.address}</p>
+                <button onClick={() => handleBooking(index)}>Đặt phòng</button>
               </div>
             </div>
           ))}

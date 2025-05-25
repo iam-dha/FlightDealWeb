@@ -61,6 +61,15 @@
   padding: 24px 40px;
   gap: 32px;
 }
+.container_fill_sign_up1 {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 24px 40px;
+  gap: 32px;
+}
 .container_forgot {
   width: 50%;
   height: 100%;

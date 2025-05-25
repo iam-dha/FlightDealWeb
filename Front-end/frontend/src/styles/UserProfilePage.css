@@ -147,7 +147,7 @@
 }
 
 .modal-container input {
-  width: 100%;
+  width: calc(100% - 14px);
   padding: 12px 14px;
   margin: 10px 0;
   font-size: 15px;
