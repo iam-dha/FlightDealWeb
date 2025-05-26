@@ -1,0 +1,337 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+}
+.container_sign_in {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+  background-color: #ffffff;
+  overflow: hidden;
+}
+.container_img_sign {
+  background-image: url("../../public/images/background_auth.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+.logo {
+  position: absolute;
+  top: 32px;
+  width: 128px;
+  height: 29px;
+}
+.container_btn_sign_in {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+  align-items: center;
+}
+.btn_sign_in {
+  border-radius: 8px;
+  border: 1px solid #ffffff;
+  width: 136px;
+  height: 40px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container_fill_sign_up {
+  padding-top: 50px !important;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 24px 40px;
+  gap: 32px;
+}
+.container_fill_sign_up1 {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 24px 40px;
+  gap: 32px;
+}
+.container_forgot {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px 40px;
+  gap: 32px;
+}
+.input {
+  width: 100%;
+  padding: 10px 0px;
+  border: none;
+  border-bottom: 1px solid #1c1b1e;
+}
+.input_pass {
+  width: 100%;
+  padding: 10px 0px;
+  border: none;
+}
+.container_input_pass {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-bottom: 1px solid #1c1b1e;
+}
+.container_input_pass_sign {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  border-bottom: 1px solid #1c1b1e;
+}
+.container_memorize {
+  width: 100%;
+  display: flex;
+  gap: 8px;
+  margin-bottom: -24px;
+  align-items: center;
+}
+.button_sign_in {
+  margin-top: 24px;
+  width: 100%;
+  min-height: 40px;
+  height: 40px;
+  display: flex;
+  border-radius: 8px;
+  background-color: #136397;
+  align-items: center;
+  justify-content: center;
+}
+.container_forget_pass {
+  width: fit-content;
+  margin: 0 auto;
+}
+.container_back {
+  width: fit-content;
+  height: 24px;
+  display: flex;
+  gap: 8px;
+  margin-left: -16px;
+}
+.container_dot_title {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  justify-content: center;
+}
+.container_dot {
+  width: 88px;
+  height: 12px;
+  display: flex;
+  gap: 16px;
+  margin: 0 auto;
+}
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #c9c5c9;
+}
+.dot_selected {
+  width: 32px;
+  height: 12px;
+  border-radius: 10px;
+  background-color: #136397;
+}
+.textCodeConfirm {
+  color: #474747;
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: center;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.codeContainer {
+  margin-top: -24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.codeInput {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  text-align: center;
+  border: none;
+  border-bottom: 1px solid #1c1b1e;
+  outline: none;
+  transition: border-color 0.3s;
+}
+.resend_code {
+  width: fit-content;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 0 auto;
+}
+.rotating {
+  transition: transform 2s ease;
+  transform: rotate(360deg);
+}
+.reload {
+  cursor: pointer;
+}
+/* ====modal===== */
+/* Lớp overlay để làm mờ nền đằng sau */
+.overlay {
+  position: fixed; /* Fix ở giữa màn hình */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+.modal {
+  width: 343px;
+  height: 116px;
+  background-color: white;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+.confirm {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.container_cancel_confirm {
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  gap: 16px;
+  align-items: center;
+}
+.btn_sign_in_b3 {
+  width: 104px;
+  height: 28px;
+  border-radius: 8px;
+  background-color: #e8f4fc;
+  padding: 4px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn_signIn_SignUp {
+  margin-top: 32px;
+  width: 100%;
+  height: 40px;
+  min-height: 40px;
+  display: flex;
+  border-radius: 8px;
+  background-color: #136397;
+  align-items: center;
+  justify-content: center;
+}
+.btnSignIn {
+  width: fit-content;
+  display: none;
+  margin: 0 auto;
+}
+.btnSignUp {
+  display: none;
+  margin: 0 auto;
+  width: fit-content;
+  gap: 8px;
+}
+.font_medium_18px_white {
+  font-family: Mulish;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #ffffff;
+}
+.item_text {
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+.font_medium_white {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #ffffff;
+}
+@media screen and (max-width: 1150px) {
+  .container_sign_in {
+    width: 90% !important;
+  }
+  .codeInput {
+    width: 30px;
+    height: 30px;
+  }
+  .codeContainer {
+    margin-top: 0px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .container_img_sign {
+    display: none;
+  }
+  .container_sign_in {
+    height: fit-content;
+  }
+  .container_fill_sign_up,
+  .container_forgot {
+    width: 100%;
+    height: fit-content;
+  }
+  .btn_signIn_SignUp,
+  .btnSignIn,
+  .btnSignUp {
+    display: flex;
+  }
+  .codeInput {
+    width: 60px;
+    height: 60px;
+  }
+}
+@media screen and (max-width: 530px) {
+  .codeInput {
+    width: 30px;
+    height: 30px;
+  }
+}

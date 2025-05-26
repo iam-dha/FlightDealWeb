@@ -1,0 +1,70 @@
+.alertContainer {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999; /* Đảm bảo alert nằm trên các phần tử khác */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.notification {
+  z-index: 100;
+  position: fixed;
+  top: 20px;
+  right: -300px; /* Bắt đầu ngoài màn hình */
+  width: fit-content;
+  min-width: 300px;
+  max-width: 350px;
+  padding: 15px;
+  background-color: #489b1c;
+  color: white;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: right 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  opacity: 0; /* Mặc định ẩn */
+  padding: 24px 12px;
+}
+.container_icon_title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.container_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  min-width: 46px;
+  border-radius: 50%;
+}
+.container_title {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.title {
+  font-family: "Inter";
+  font-weight: 600;
+  font-size: 16px;
+  text-align: left;
+}
+.text {
+  font-family: "Inter";
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  text-align: left;
+}
+.show {
+  right: 20px; /* Hiển thị trên màn hình */
+  opacity: 1;
+}
+
+.hide {
+  right: -300px; /* Ẩn lại */
+  opacity: 0;
+}

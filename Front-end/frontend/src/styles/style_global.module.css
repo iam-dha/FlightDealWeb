@@ -1,0 +1,992 @@
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.display_column {
+  display: flex;
+  flex-direction: column;
+}
+.display_row {
+  display: flex;
+  flex-direction: row;
+}
+.display_row_spacebetween {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+/* icon */
+.icon_12 {
+  width: 12px;
+  height: 12px;
+}
+.icon_16 {
+  width: 16px;
+  height: 16px;
+}
+.icon {
+  min-width: 24px;
+  width: 24px;
+  height: 24px;
+}
+.icon_30 {
+  width: 30px;
+  height: 30px;
+}
+.icon_32 {
+  width: 32px;
+  height: 32px;
+}
+.icon_40 {
+  width: 40px;
+  height: 40px;
+}
+.img_48 {
+  width: 48px;
+  height: 48px;
+}
+.img_60 {
+  width: 60px;
+  height: 60px;
+}
+.img_130 {
+  width: 130px;
+  height: 130px;
+}
+.img_200 {
+  width: 200px;
+  height: 200px;
+}
+/* input */
+.input_noborder {
+  border: none;
+  padding: 8px;
+  width: calc(100% - 30px);
+}
+/* ==========font============ */
+.text_12px_black {
+  font-family: Mulish;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 14px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #000000;
+}
+.font_13px_text {
+  font-family: Mulish;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1c1b1e;
+}
+.font_13px_gray8 {
+  font-family: Mulish;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #48464a;
+}
+.font_14px_black {
+  font-family: Mulish;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #000000;
+}
+.font_14px_logo {
+  font-family: Mulish;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #136397;
+}
+.font_15px_DB242D {
+  font-family: Mulish;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #db242d;
+}
+.font_16px_DB242D {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #db242d;
+}
+.textStar {
+  /* dấu *  */
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: rgba(219, 36, 45, 1);
+}
+.font_regular {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1c1b1e;
+}
+.font_regular_logo {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #136397;
+}
+.font_regular_success {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #489b1c;
+}
+.font_regular_warning {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #f4ab01;
+}
+
+.font_regular_white {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #ffffff;
+}
+.font_regular_48464a {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: rgba(72, 70, 74, 1);
+}
+.font_regular_gray7 {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #605d62;
+}
+.font_regular_gray6 {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #79767b;
+}
+.font_regular_gray5 {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #939094;
+}
+.font_regular_gray8 {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #48464a;
+}
+
+.font_normal {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.08px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #ffffff;
+}
+.font_normal_logo {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.08px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #136397;
+}
+
+.font_medium_20px_logo {
+  font-family: Mulish;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #136397;
+}
+.font_medium_20px_black {
+  font-family: Mulish;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #000000;
+}
+.font_medium_20px_04304E {
+  font-family: Mulish;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #04304e;
+}
+.font_normal_nocolor {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20.08px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_normal_12px {
+  font-family: Mulish;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 15.06px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_medium {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_medium_text {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1c1b1e;
+}
+.font_medium_white {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #ffffff;
+}
+.font_medium_16px {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20.08px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_medium_16px_logo {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 20.08px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #136397;
+}
+.font_regular_18px_gray8 {
+  font-family: Mulish;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #48464a;
+}
+
+.font_regular_black {
+  font-family: Mulish;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #000000;
+}
+
+.font_medium_18px_text {
+  font-family: Mulish;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1c1b1e;
+}
+.font_medium_18px_white {
+  font-family: Mulish;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #ffffff;
+}
+.font_medium_24px_black {
+  font-family: Mulish;
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #000000;
+}
+.font_title_bold {
+  font-family: Mulish;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 44px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_title_bold_16px {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_bold_18px_logo {
+  font-family: Mulish;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #136397;
+}
+.font_bold_16px {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: bold;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_title_bold_20px {
+  font-family: Mulish;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 32px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_bold_24px_logo {
+  font-family: Mulish;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 36px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #136397;
+}
+
+.font_semibold {
+  font-family: Mulish;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #48464a;
+}
+.font_semibold_1c1b1e {
+  font-family: Mulish;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1c1b1e;
+}
+.font_semibold_logo {
+  font-family: Mulish;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #136397;
+}
+.font_semibold_gray4 {
+  font-family: Mulish;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #aeaaaf;
+}
+.font_semibold_20px_black {
+  font-family: Mulish;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 32px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #000000;
+}
+.font_semibold_14px_gray9 {
+  font-family: Mulish;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #313033;
+}
+.font_semibold_16px {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_semibold_16px_white {
+  color: #ffffff;
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_semibold_success {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #489b1c;
+}
+.font_semibold_16px_285A9B {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #285a9b;
+}
+.font_semibold_16px_1c1b1e {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1c1b1e;
+}
+.font_semibold_16px_gray7 {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #605d62;
+}
+.font_semibold_16px_text {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #1c1b1e;
+}
+.font_semibold_16px_gray7 {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #605d62;
+}
+.font_semibold_16px_logo {
+  font-family: Mulish;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #136397;
+}
+.font_semibold_18px {
+  color: rgba(28, 27, 30, 1);
+  font-family: Mulish;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_semibold_18px_black {
+  color: #000000;
+  font-family: Mulish;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_semibold_18px_3691D9 {
+  color: #3691d9;
+  font-family: Mulish;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_semibold_24px_text {
+  color: #1c1b1e;
+  font-family: Mulish;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 36px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_semibold_26px_gray7 {
+  color: #605d62;
+  font-family: Mulish;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 38px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_semibold_26px_warning {
+  color: #f4ab01;
+  font-family: Mulish;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 38px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_bold_18px_text {
+  color: #1c1b1e;
+  font-family: Mulish;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_bold_18px_black {
+  color: #000000;
+  font-family: Mulish;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 28px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_bold_20px_gray9 {
+  font-family: Mulish;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 32px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #313033;
+}
+.font_bold_20px_DB242D {
+  font-family: Mulish;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 32px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+  color: #db242d;
+}
+.font_bold_24px_white {
+  color: #ffffff;
+  font-family: Mulish;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 36px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_bold_24px_logo {
+  color: #136397;
+  font-family: Mulish;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 36px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_bold_30px {
+  color: rgba(28, 27, 30, 1);
+  font-family: Mulish;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 44px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_bold_32px {
+  color: #db242d;
+  font-family: Mulish;
+  font-size: 30px;
+  font-weight: bold;
+  line-height: 24px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_bold_40px {
+  color: #ffffff;
+  font-family: Mulish;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 56px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_bold_40px_text {
+  color: #1c1b1e;
+  font-family: Mulish;
+  font-size: 40px;
+  font-weight: bold;
+  line-height: 56px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+.font_bold_50px {
+  color: rgba(28, 27, 30, 1);
+  font-family: Mulish;
+  font-size: 50px;
+  font-weight: bold;
+  line-height: 68px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
+}
+
+/* scale */
+.item {
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+.item:hover {
+  transform: scale(1.02);
+}
+.item:active {
+  transform: scale(0.98);
+  transform: translateY(1px);
+  opacity: 0.8;
+}
+.item_text {
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+.item_text:active {
+  transform: scale(0.98);
+  transform: translateY(1px);
+  opacity: 0.8;
+}
+.item_bar {
+  cursor: pointer;
+  user-select: none;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+}
+.item_bar:active {
+  opacity: 0.8;
+}
+.btn {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.1s ease-in-out;
+}
+.btn:hover {
+  opacity: 0.9;
+  background-color: #f5f5f5;
+}
+
+.btn:active {
+  padding: 8px 18px;
+  opacity: 0.8;
+  transform: scale(0.98);
+}
+
+/* line height */
+.lineheight20 {
+  height: 20px;
+  width: 1px;
+  background-color: #c9c5c9;
+}
+.linewidth {
+  width: 214px;
+  height: 1px;
+  background-color: rgba(174, 170, 175, 1);
+}
+/* Check box */
+/* 
+  <input
+                type="checkbox"
+                className={style.customCheckbox}
+                checked={selectedCancellation === "option1"}
+                onChange={() => handleCheckboxCancellation("option1")}
+              />
+*/
+.customCheckbox_require {
+  min-width: 20px;
+  min-height: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  border-radius: 4px;
+  appearance: none;
+  border: 1.5px solid #605d62;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+}
+
+.customCheckbox_require:checked {
+  background-color: #136397;
+  border-color: #136397;
+}
+
+.customCheckbox_require:checked::after {
+  content: "✔";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  color: white;
+}
+/* Hình tròn check box */
+.customCheckbox {
+  min-width: 22px;
+  min-height: 22px;
+  max-width: 22px;
+  max-height: 22px;
+  border-radius: 50%;
+  appearance: none;
+  border: 2px solid #605d62;
+  cursor: pointer;
+  position: relative;
+  background-color: transparent;
+}
+
+.customCheckbox:checked {
+  border-color: #136397;
+}
+
+.customCheckbox:checked::after {
+  content: "";
+  width: 15px; /* Kích thước vòng tròn bên trong */
+  height: 15px;
+  border-radius: 50%;
+  background-color: #136397; /* Màu vòng tròn bên trong */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* container */
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 24px;
+  background-color: rgba(255, 255, 255, 1);
+}
+.container_nocolor {
+  overflow: hidden;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px 24px;
+}
+.container_detail_edit {
+  width: 100%;
+  margin: 32px 24px 48px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.container_cancle_save {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 16px;
+}
+.container_Review {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+/* nút save và bỏ qua */
+.container_btn {
+  width: 136px;
+  height: 40px;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 1);
+  border: 1px solid rgba(121, 118, 123, 1);
+}
+/* pagination */
+.container_pagination {
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  margin: 16px auto;
+}
+.item_prev_next_number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+  min-height: 40px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #605d62;
+}
+.active_page {
+  background-color: #136397;
+  color: #ffffff;
+}
